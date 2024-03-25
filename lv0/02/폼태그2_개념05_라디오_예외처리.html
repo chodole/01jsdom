@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+
+    <form >
+        <h3>설문조사</h3>
+        성별 : 
+        <input type="radio"  name="gender" value="male">남성
+        <input type="radio"  name="gender" value="female">여성 <br/>
+        연령 : 
+        <input type="radio" name="age" value="10">10대
+        <input type="radio" name="age" value="20">20대
+        <input type="radio" name="age" value="30">30대 이상 <br/>
+        이름 : 
+        <input type="text" id="membername" > <br/>
+        <input type="submit" onclick="checkValue()">
+    </form>
+    
+
+    <script>
+        /*
+                 
+
+
+        */
+
+        function checkValue(){		
+            event.preventDefault();
+            let genderList = document.getElementsByName("gender");
+            console.log(genderList);
+
+            let count = 0;
+            for(let i = 0; i < genderList.length; i++){
+                if(genderList[i].checked == true){ // 라디오의 체크여부는 checked로한다. 
+                    count += 1;
+                }
+            }
+
+            if(count == 0){
+                alert("성별이 선택되지않았습니다.");
+                return;
+            }
+
+            let ageList= document.getElementsByName("age");
+            console.log(ageList);
+
+             count = 0;
+            for(let i = 0; i < ageList.length; i++){
+                if(ageList[i].checked == true){ // 라디오의 체크여부는 checked로한다. 
+                    count += 1;
+                }
+            }
+            if(count == 0){
+                alert("나이가 선택되지않았습니다.");
+                return;
+            }
+
+            let membername = document.querySelector("#membername");
+            if(membername.value == ""){
+                alert("이름이 입력되지 않았습니다!");
+                return;
+            }
+
+            alert("설문조사제출");
+        }
+
+    </script>
+    
+</body>
+</html>

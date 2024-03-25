@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+
+    <form>
+        <h3>수강신청</h3>
+        <select name="membername">
+            <option value="none">회원명</option>
+            <option value="10001">홍길동</option>
+            <option value="10002">장발장</option>
+            <option value="10003">임꺽정</option>
+            <option value="20001">상춘향</option>
+            <option value="20002">이몽룡</option>
+        </select>	
+        
+        <select name="classarea">
+            <option value="none">강의장소</option>
+            <option value="서울본원">서울본원</option>
+            <option value="성남분원">성남분원</option>
+            <option value="대전분원">대전분원</option>
+            <option value="부산분원">부산분원</option>
+            <option value="대구분원">대구분원</option>
+        </select>
+
+        <select  name="classname">
+            <option value="none">강의신청</option>
+            <option value="100000">초급반</option>
+            <option value="200000">중급반</option>
+            <option value="300000">고급반</option>
+            <option value="400000">심화반</option>
+        </select>		
+        
+        <input type="submit" onclick="checkValue()">
+    </form>
+    <script>
+
+        function checkValue(){		
+            event.preventDefault();
+            let membername = document.getElementsByName("membername");
+            //alert(membername[0].value);
+            if(membername[0].value == "none"){
+				alert("회원명을 선택해주세요!");
+				membername[0].focus();
+                return;
+			}
+
+            let classarea = document.getElementsByName("classarea");
+            if(classarea[0].value == "none"){
+				alert("강의장소를 선택해주세요!");
+				classarea[0].focus();
+                return;
+			}
+
+            let classname = document.getElementsByName("classname");
+            if(classname[0].value == "none"){
+				alert("수업이름를 선택해주세요!");
+				classname[0].focus();
+                return;
+			}
+            alert("수강신청!");
+        }
+
+    </script>
+    
+</body>
+</html>

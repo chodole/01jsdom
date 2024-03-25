@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+    
+
+
+    <form>
+        아이디 : <input type="text">
+        <input type="submit" onclick="checkValue()">
+    </form>
+    
+
+    <script>
+
+        /*
+            [1] <input type="submit" onclick="checkValue()">
+
+                버튼을 눌렀을때 함수를 호출할수있다. 
+
+            [2] event.preventDefault();
+
+                본래 form 의 목적은 데이터를 db로 보내는것에 있는데, 
+                자동으로 새로고침이 발동된다.
+                새로고침을 막기위해서는  event.preventDefault(); 을 해줘야 새로고침이 사라진다. 
+
+
+        */
+
+        function checkValue(){		
+            event.preventDefault();
+            alert("함수가호출되었습니다.");
+            
+        }
+
+    </script>
+    
+
+</body>
+</html>

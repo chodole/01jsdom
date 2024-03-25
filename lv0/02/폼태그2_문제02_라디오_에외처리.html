@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+
+    <form >
+        <h3>설문조사</h3>
+        성별 : 
+        <input type="radio"  name="gender" value="male">남성
+        <input type="radio"  name="gender" value="female">여성 <br/>
+        연령 : 
+        <input type="radio" name="age" value="10">10대
+        <input type="radio" name="age" value="20">20대
+        <input type="radio" name="age" value="30">30대 이상 <br/>
+        이름 : 
+        <input type="text" id="membername" > <br/>
+        <input type="submit" onclick="checkValue()">
+    </form>
+    
+
+    <script>
+        /*
+            [문제]
+                라디오 예외처리
+                [1]  성별이 선택되지않았을때 : "성별이 선택되지않았습니다."
+                [2]  나이가 선택되지않았을때 : "나이가 선택되지않았습니다."
+                [3]  이름이 입력안되었을때 : "이름이 입력되지 않았습니다!"
+                [4]  전부입력시 : "설문조사제출"
+
+
+        */
+
+        function checkValue(){		
+            event.preventDefault();
+
+            let gender = document.getElementsByName("gender");
+            let age = document.getElementsByName("age");
+            let membername = document.querySelector("#membername");
+
+            let count1 = 0;
+            for(let i=0;i<gender.length;i++){
+                if(gender[i].checked == true){
+                    count1++;
+                }
+            }
+
+            let count2 = 0;
+            for(let i =0;i<age.length;i++){
+                if(age[i].checked == true){
+                    count2++;
+                }
+            }
+
+            if(count1==0){
+                alert("성별이 선택되지않았습니다.");
+            }else if(count2==0){
+                alert("나이가 선택되지않았습니다.");
+            }else if(membername.value==""){
+                alert("이름이 입력되지 않았습니다.");
+            }else{
+                alert("제출");
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
+​

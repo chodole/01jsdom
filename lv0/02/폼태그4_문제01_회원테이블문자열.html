@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+
+    <div align="center" id="main">
+
+    </div>
+
+    <script>
+        /*
+            [문제]
+                아래데이터를 테이블로 그려보시오.
+       */
+        let jsonArr = [
+            {"num" : 1001 ,  "name" : "김철수" , "math" : 10, "eng" : 20, "kor" : 30},
+            {"num" : 1002 ,  "name" : "박민정" , "math" : 40, "eng" : 60, "kor" : 10},
+            {"num" : 1003 ,  "name" : "이상아" , "math" : 15, "eng" : 10, "kor" : 50},
+            {"num" : 1004 ,  "name" : "조민수" , "math" : 16, "eng" : 40, "kor" : 20}
+        ];
+
+        let str = ``;
+
+        str += `
+            <table border="1">
+                <tr>
+                    <td>번호</td>
+                    <td>이름</td>
+                    <td>수학</td>
+                    <td>영어</td>
+                    <td>국어</td>
+                </tr>
+        `;
+
+        for(let i=0;i<jsonArr.length;i++){
+            str+=`
+                <tr>
+                    <td>${jsonArr[i]["num"]}</td>
+                    <td>${jsonArr[i]["name"]}</td>
+                    <td>${jsonArr[i]["math"]}</td>
+                    <td>${jsonArr[i]["eng"]}</td>
+                    <td>${jsonArr[i]["kor"]}</td>
+                </tr>
+            `;
+        }
+        str+=`</table>`;
+
+        let a = document.querySelector("#main");
+        a.innerHTML=str;
+
+       
+
+    </script>
+    
+    
+    
+</body>
+</html>

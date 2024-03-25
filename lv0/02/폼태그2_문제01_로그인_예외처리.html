@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+
+    <form>
+        <h3>로그인</h3>
+        아이디 : <input type="text" id="memberid"> <br>
+		비밀번호 : <input type="text" id="memberpw"><br>
+		<button onclick="checkValue()">로그인</button>
+    </form>
+    
+
+    <script>
+        /*
+           [문제]
+                인풋 공백예외처리를 만들어보시오.
+
+                [1] 아이디가 비었을때 : "아이디를 입력하세요."
+                [2] 비밀번호가 비었을때 : "비밀번호를 입력하세요."
+                [3] 둘다 입력햇을때 : "로그인시도"
+
+        */
+
+        function checkValue(){		
+            event.preventDefault();
+           let id = document.querySelector("#memberid");
+           let pw = document.querySelector("#memberpw");
+
+           if(id.value==""){
+            alert("아이디를 입력하세요");
+            id.focus();
+           }else if(pw.value==""){
+            alert("비밀번호를 입력하세요");
+            pw.focus();
+           }else{
+            alert("로그인 시도");
+           }
+        }
+
+    </script>
+    
+</body>
+</html>

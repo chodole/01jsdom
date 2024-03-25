@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+    
+
+
+    <form>
+        아이디 : <input type="text" id="memberid">
+        <input type="submit" onclick="checkValue()">
+    </form>
+    
+
+    <script>
+        /*
+            [1] let memberid = document.querySelector("#memberid");
+                [주의] input의 값은 innerHTML 이 아니라 , value로 찾는다. 
+
+            console.log(memberid.value);            
+
+
+        */
+
+        function checkValue(){		
+            event.preventDefault(); // 이것을 하지않으면 새로고침되어 모든동작이 리셋된다.
+            let memberid = document.querySelector("#memberid");
+            console.log(memberid.value);            
+        }
+
+    </script>
+    
+</body>
+</html>

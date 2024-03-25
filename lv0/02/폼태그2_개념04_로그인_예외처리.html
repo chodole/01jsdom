@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    
+
+    <form>
+        <h3>로그인</h3>
+        아이디 : <input type="text" id="memberid"> <br>
+		비밀번호 : <input type="text" id="memberpw"><br>
+		<button onclick="checkValue()">로그인</button>
+    </form>
+    
+
+    <script>
+        /*
+            [1] let memberid = document.querySelector("#memberid");
+                [주의] input의 값은 innerHTML 이 아니라 , value로 찾는다. 
+
+            console.log(memberid.value);            
+
+
+        */
+
+        function checkValue(){		
+            event.preventDefault(); // 이것을 하지않으면 새로고침되어 모든동작이 리셋된다.
+            let memberid = document.querySelector("#memberid");
+            let memberpw = document.querySelector("#memberpw");
+
+            if(!memberid.value){
+                alert("아이디를 입력하세요.");
+                memberid.focus();// 커서가 깜박인다.
+            }
+            else if(!memberpw.value){
+                alert("비밀번호를 입력하세요.");
+                memberpw.focus(); 
+            }else{
+                alert("로그인시도");
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

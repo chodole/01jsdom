@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+	<div align="center">		
+		<form>
+			<table border="1">
+				<tr>
+					<td colspan="3" align="center"><h3>수강신청</h3></td>
+				</tr>
+				<tr>
+					<td>수강월</td>
+					<td><input name="registdate"></td>
+					<td>2022년03월 예)202203</td>
+				</tr>
+				<tr>
+					<td>회원명</td>
+					<td colspan="2">
+						<select name="membername" >
+							<option value="none">회원명</option>
+							<option value="10001">홍길동</option>
+							<option value="10002">장발장</option>
+							<option value="10003">임꺽정</option>
+							<option value="20001">상춘향</option>
+							<option value="20002">이몽룡</option>
+						</select>									
+					</td>				
+				</tr>			
+				<tr>
+					<td>회원번호</td>
+					<td><input name="membernumber"></td>
+					<td>예) 10001</td>
+				</tr>			
+				<tr>
+					<td>강의장소</td>
+					<td colspan="2">
+						<select name="classarea">
+							<option value="none">강의장소</option>
+							<option value="서울본원">서울본원</option>
+							<option value="성남분원">성남분원</option>
+							<option value="대전분원">대전분원</option>
+							<option value="부산분원">부산분원</option>
+							<option value="대구분원">대구분원</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>강의명</td>
+					<td colspan="2">					
+						<select name="classname" >
+							<option value="none">강의신청</option>
+							<option value="100000">초급반</option>
+							<option value="200000">중급반</option>
+							<option value="300000">고급반</option>
+							<option value="400000">심화반</option>
+						</select>				
+					</td>					
+				</tr>			
+				<tr>
+					<td>수강료</td>
+					<td><input name="tuition"></td>
+					<td>원</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center">
+						<input type="submit" value="수강신청">
+						
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

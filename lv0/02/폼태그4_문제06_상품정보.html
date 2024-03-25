@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center" id="main">
+
+    </div>
+        
+    <script>
+
+        /*
+            [문제]
+                memberList는 회원 목록 데이터이다.
+                순서대로 회원번호와 회원아이디이다.
+
+                itemList은 쇼핑몰 판매 상품 데이터이다.
+                순서대로 상품이름과 가격이다.
+                
+                orderList는 오늘 주문 목록이다. 
+                순서대로 주문아이디 , 상품 , 개수 이다. 
+
+                상품별 판매개수를 출력하시오.
+                단, 판매개수가 높은순으로 출력하시오.
+                테이블로 출력하시오.
+
+            [정답]
+                바나나,8
+                사과,6
+                딸기,6
+        */
+
+        let memberList = [
+            {"num":1001, "id":"qwer1234"},
+            {"num":1002, "id":"pythongood"},
+            {"num":1003, "id":"testid"}
+        ];
+
+        let itemList = [
+            {"item":"사과", "price":1100},
+            {"item":"바나나", "price":2000},
+            {"item":"딸기", "price":4300}
+        ];
+
+        let orderList = [
+            {"id":"qwer1234" , "item":"사과" , "count":3},
+            {"id":"pythongood" , "item":"딸기" , "count":6},
+            {"id":"testid" , "item":"바나나" , "count":1},
+            {"id":"pythongood" , "item":"사과" , "count":2},
+            {"id":"testid" , "item":"바나나" , "count":7},
+            {"id":"qwer1234" , "item":"사과" , "count":1}
+        ];
+
+        let viewList = [];
+        for(let i=0;i<itemList.length;i++){
+            let temp =[];
+            let count = 0;
+            for(let j=0;j<orderList.length;j++){
+                if(itemList[i]["item"]==orderList[j]["item"]){
+                    count+=orderList[j]["count"];
+                }
+            }
+            temp.push(itemList[i]["item"]);
+            temp.push(count);
+            viewList.push(temp);
+        }
+
+        viewList.sort((a,b)=>{
+            if(a[1]<b[1]){
+                return 1;
+            }else if(a[1]>b[1]){
+                return -1;
+            }else{
+                return 0;
+            }
+        });
+
+        str=``;
+        str+=`<table border="1">`;
+
+        for(let i=0;i<viewList.length;i++){
+            str+=`<tr>`;
+            for(let j=0;j<viewList[i].length;j++){
+                str+=`<td>${viewList[i][j]}</td>`;
+            }
+            str+=`</tr>`;
+        }
+        str+=`</table>`;
+
+        let a = document.querySelector("#main");
+        a.innerHTML=str;
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>value</title>
+</head>
+<body>
+    <!--
+        [select태그]
+            [1] select태그 는 여러그룹중에서 한가지만 선택할경우 사용한다. (비슷한기능으로 radio가 있다. )
+            [2] select태그 는 radio와는 다르게 태그자체가 같은그룹을 표시하기 쉽게되어있다.
+			[3] select태그의 name속성을 통해 select 를 구분할수있다. 
+			[3] option태그는 하위태그로서 같은그룹의 데이터하나씩을 표현한다. 
+            [4] option태는 value를 사용해서 각각의 데이터를 표시한다. 
+			 [5] 결국 name이변수 , value가 값이라고생각하면된다.
+        -->
+    
+        <form>
+			<h3>수강신청</h3>
+			<select name="membername">
+				<option value="none">회원명</option>
+				<option value="10001">홍길동</option>
+				<option value="10002">장발장</option>
+				<option value="10003">임꺽정</option>
+				<option value="20001">상춘향</option>
+				<option value="20002">이몽룡</option>
+			</select>	
+			
+			<select name="classarea">
+				<option value="none">강의장소</option>
+				<option value="서울본원">서울본원</option>
+				<option value="성남분원">성남분원</option>
+				<option value="대전분원">대전분원</option>
+				<option value="부산분원">부산분원</option>
+				<option value="대구분원">대구분원</option>
+			</select>
+
+			<select  name="classname">
+				<option value="none">강의신청</option>
+				<option value="100000">초급반</option>
+				<option value="200000">중급반</option>
+				<option value="300000">고급반</option>
+				<option value="400000">심화반</option>
+			</select>		
+			
+			<input type="submit">
+		</form>
+    
+</body>
+</html>
