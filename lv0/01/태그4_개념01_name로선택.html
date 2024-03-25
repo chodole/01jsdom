@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByName()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.getElementsByTagName("tag명") 메서드
+            (1) 해당 tag의 요소를 선택
+            (2) NodeList 형태로 가저온다. 
+            (3) NodeList 배열이라고생각해도된다.  
+            (4) 속성클래스와 비슷하다.
+
+    -->
+ 
+    <h3>학습 과목</h3>
+
+    <p name="test">getElementsByName() </p>
+    
+    <script>
+        
+        let a = document.getElementsByName("test");
+        console.log(a);
+
+    
+    </script>
+</body>
+</html>

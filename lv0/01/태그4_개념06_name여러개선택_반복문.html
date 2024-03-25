@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByName()</title>
+</head>
+<body>
+
+   
+    <p name="test">getElementsByName() 11111</p>
+    <p name="test">getElementsByName() 22222</p>
+    <p name="test">getElementsByName() 33333</p>
+    <p name="test">getElementsByName() 44444</p>
+    <p name="test">getElementsByName() 55555</p>
+
+    <script>
+        
+        let a = document.getElementsByName("test");
+        for(let i = 0; i < a.length; i++){
+            console.log(a[i].innerHTML);
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById()</title>
+</head>
+<body>
+    
+    <!--
+        [개념] document.getElementById("id명") 
+            (1) 해당 id의 요소를 선택
+            (2) 요소가 존재하지 않는 경우 null을 반환
+            (3) id값은 고유해야 하지만, 동일한 id를 가진 요소가 둘 이상 존재하면, 
+                첫 번째 요소를 반환
+    -->
+
+    <p id="test">getElementById() 1111</p>
+    <p id="test">getElementById() 2222</p>
+
+    <script>
+       
+        let a = document.getElementById("test");
+        console.log(a);    //  <p id="test">getElementById() 1111</p>
+
+
+    </script>
+
+</body>
+</html>
+​

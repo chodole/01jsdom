@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelectorAll()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.querySelectorAll("선택자") 메서드
+            (1) 해당 CSS 선택자와 일치하는 모든 요소를 
+                NodeList로 반환
+
+            (2) NodeList는 배열이라고 생각하면된다.
+
+
+
+    -->
+ 
+    <p class="content">querySelectorAll() 메서드1</p>
+    <p class="content">querySelectorAll() 메서드2</p>
+
+    <script>
+        // 태그 선택
+        let a = document.querySelectorAll(".content");
+       
+        for(let i=0; i<a.length; i++) {
+            // 텍스트 변경
+            a[i].innerHTML = "텍스트 변경";
+        }
+    </script>
+
+    <!--
+        
+        [정리]
+            [1] 결국 (id , class , tag) 는 querySelector 와  querySelectorAll로 전부 커버 가능하기때문에
+            [2]  querySelector 와 querySelectorAll 과 name 을 주로 사용하게된다.
+    -->
+</body>
+</html>
+​

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector()</title>
+</head>
+<body>
+
+  
+    <!--
+            없는 태그 아이디 클래스 등을 선택하면, null이 반환된다. 
+
+    -->
+ 
+    <h3>학습 과목</h3>
+    
+    <h1>태그</h1>
+    <p id="testId">아이디</p>
+    <p class="testClass">클래스</p>
+    
+
+    <script>
+        let a = document.querySelector("h1"); 
+        a.innerHTML = "태그로 변경";        
+        let b = document.querySelector("#testId"); 
+        b.innerHTML = "아이디로 변경";     
+        let c = document.querySelector(".testClass"); 
+        c.innerHTML = "클래스로 변경";     
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByClassName()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.getElementsByClassName("class명")
+            (1) 해당 class 요소를 선택
+            (2) HTMLCollection 형태로 가저온다. 
+            (3) HTMLCollection이란 배열이라고생각해도된다.  
+        
+    -->
+
+    <!-- 속성이 class 로 변경되었다. -->
+    <p class="test">getElementsByClassName() </p>
+   
+    <script>
+        
+        let a = document.getElementsByClassName("test");
+        console.log(a);
+
+      
+    </script>
+
+</body>
+</html>

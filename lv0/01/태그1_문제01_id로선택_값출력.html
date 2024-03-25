@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById()</title>
+</head>
+<body>
+    
+    <!--
+        [개념] innerHTML
+            태그의 내용을 출력해준다.  
+            
+    -->
+
+    <p id="p1">getElementById() </p>
+    <p id="p2"> </p>
+    <script>
+        
+       
+        /*
+            [문제]
+                <p id="p1">getElementById() </p>
+                <p id="p2"> </p>
+
+                위 두태그의 값을 콘솔창에 출력하시오.
+        */
+
+        let a = document.getElementById("p1");
+        console.log(a.innerHTML);
+        let b = document.getElementById("p2");
+        console.log(b.innerHTML);
+
+    </script>
+
+</body>
+</html>

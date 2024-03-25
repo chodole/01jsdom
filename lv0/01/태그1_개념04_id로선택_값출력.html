@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById()</title>
+</head>
+<body>
+    
+    <!--
+        [개념] innerHTML
+            태그의 내용을 출력해준다.  
+    -->
+
+    <p id="p1">getElementById() </p>
+    <p id="p2"> </p>
+    <script>
+        
+        let a = document.getElementById("p1");
+        console.log(a);    
+        console.log(a.innerHTML);   
+
+        let b = document.getElementById("p2");
+        console.log(b);    
+        console.log(b.innerHTML);   // 아무값도 없으니 출력되지않는다.
+       
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector()</title>
+</head>
+<body>
+
+  
+    <!--
+        [개념] document.querySelector(3가지선택가능) 
+                [1] querySelector는 아이디, 클래스 , 태그 3가지를 원하는대로 선택할수있다. 
+                [2] 결국 (id , class , tag) 는 querySelector 로 전부 커버 가능하다.
+
+    -->
+ 
+    <h3>학습 과목</h3>
+    
+    <h1>태그</h1>
+    <p id="testId">아이디</p>
+    <p class="testClass">클래스</p>
+    
+
+    <script>
+        let a = document.querySelector("h1"); // 기호를 붙이지않으면 태그가선택된다.
+        console.log(a); 
+        let b = document.querySelector("#testId"); // # 은아이디를 찾을때사용된다.
+        console.log(b); 
+        let c = document.querySelector(".testClass"); // . 은클래스를 찾을때사용된다.
+        console.log(c);
+    
+    </script>
+
+</body>
+</html>
+​

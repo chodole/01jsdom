@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByTagName()</title>
+</head>
+<body>
+
+    <ul>
+        <h3>학생목록</h3>
+        <li name="test" ></li>
+        <li name="test" ></li>
+        <li name="test" ></li>
+        <li name="test" ></li>
+        <li name="test" ></li>
+       
+    </ul>
+
+
+    <script>
+        /*
+            [문제]
+                li태그를 선택한후 아래 4개의 배열값을 순서대로 저장하시오.
+        */
+        let arr =["김철수" , "이만수" , "김복만" , "유청아" , "송선애"];
+        let age =["남" , "남" , "남" , "여" , "여"];
+        let kor =[10 , 15 , 76 , 54 , 44];
+        let math =[87 , 43 , 8 , 12 , 32];
+        let a = document.getElementsByName("test");
+        for(let i = 0; i < a.length; i++){
+            a[i].innerHTML = "";
+            a[i].innerHTML += arr[i];
+            a[i].innerHTML += ","
+            a[i].innerHTML += age[i];
+            a[i].innerHTML += ","
+            a[i].innerHTML += kor[i];
+            a[i].innerHTML += ","
+            a[i].innerHTML += math[i];
+        }
+
+    </script>
+
+</body>
+</html>
+​

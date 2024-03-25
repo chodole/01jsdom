@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById()</title>
+</head>
+<body>
+    
+    <!--
+        [개념] innerHTML
+            innerHTML 의 내용을 변경하면 화면의 내용도 같이 변경된다. 
+    -->
+
+    <p id="test1">getElementById() </p>
+    <p id="test2"></p>
+
+    <script>
+       
+       /*
+            [문제]
+                <p id="p1">getElementById() </p>
+                <p id="p2"> </p>
+
+                위 두태그의 내용을 하나는 "hello" 로 변경하고 또 하나는 "bye" 로 변경하시오. 
+        */
+
+        let a = document.getElementById("test1");
+        a.innerHTML = "hello";
+
+        let b = document.getElementById("test2");
+        b.innerHTML = "bye";
+       
+
+    </script>
+
+</body>
+</html>
