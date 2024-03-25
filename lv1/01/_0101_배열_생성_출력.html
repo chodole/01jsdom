@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 생성</title>
+</head>
+<body>
+	<script>
+		/* 
+			[개념] 
+				class Array {}
+
+                배열 객체(Array Object) 생성
+				아래 세 가지 방법은 모두 같은 결과의 배열을 만들어 준다.
+				(1) let 변수 = [값1, 값2, 값3, ...];
+				(2) let 변수 = new Array(값1, 값2, 값3, ...);
+				(3) let 변수 = new Array();
+					변수[0] = 값1;
+					변수[1] = 값2;
+					변수[2] = 값3;
+					...
+		*/
+
+		// 배열 생성
+		let arr1 = [1, "a", true];	
+		document.write(arr1 + "<br>");
+		
+		let arr2 = Array(1, "a", true);
+		document.write(arr2 + "<br>");
+		
+		let arr3 = new Array();
+		arr3[0] = 1;
+		arr3[1] = "a";
+		arr3[2] = true;
+		document.write(arr3 + "<br>");
+
+		// 배열 출력(1)
+		for(let i=0; i<arr3.length; i++) {
+			document.write(arr3[i] + " ");
+		}
+		document.write("<br>");
+
+        // 배열 출력(2) : 향상된 for문
+		for(i in arr3) {
+			document.write(arr3[i] + " ");
+		}
+
+	</script>
+	
+</body>
+</html>
