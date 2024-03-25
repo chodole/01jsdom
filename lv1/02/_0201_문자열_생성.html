@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 생성</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+            [개념] 문자열 생성
+                아래 두 가지 방법은 모두 같은 문자열 객체를 생성한다.
+                (1) let 변수 = new String("문자열");
+                (2) let 변수 = "문자열";
+        */
+        
+
+
+        let str1 = new String("hello");   // 문자열 객체 생성
+        let str2 = "hello";               // 문자열 데이터 생성
+        document.write(typeof str1, "<br>");
+        document.write(typeof str2, "<br>");
+
+        // == : 데이터의 종류를 구분하지 않고 오직 값으로만 비교
+        document.write(str1 == str2, "<br>");   // true
+        // === : 데이터의 종류 구분해서 값 비교
+        document.write(str1 === str2, "<br>");  // false
+        
+        document.write("1" == 1, "<br>");   // true
+        document.write("1" === 1, "<br>");   // false
+
+    </script>
+
+</body>
+</html>
