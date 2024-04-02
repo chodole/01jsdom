@@ -1,0 +1,71 @@
+<script>
+
+    function getViewList(tbl_teacher){
+        let viewList = [];
+        for(let i=0;i<tbl_teacher.length;i++){
+            let data = {};
+            data["teacher_code"] = tbl_teacher[i].teacher_code;
+            data["class_name"] = tbl_teacher[i].class_name;
+            data["teacher_name"] = tbl_teacher[i].teacher_name;
+            data["class_total"] = tbl_teacher[i].class_price;
+
+            viewList.push(data);
+        }
+        return viewList;
+
+    }
+
+    function printViewList(viewList){
+        for(let i=0;i<viewList.length;i++){
+            document.write(viewList[i].teacher_code+" ");
+            document.write(viewList[i].class_name+" ");
+            document.write(viewList[i].teacher_name+" ");
+            document.write(viewList[i].class_total+"<br>");
+        }
+        document.write("<hr>");
+    }
+
+    function updateTotal(viewList,tbl_class){
+        for(let i=0;i<viewList.length;i++){
+            let total = 0;
+            for(let j=0;j<tbl_class.length;j++){
+                if(viewList[i].teacher_code == tbl_class[j].teacher_code){
+                    total += tbl_class[j].tuition;
+                }
+            }
+            viewList[i].class_total = total;
+        }
+    }
+
+    let tbl_teacher_202201 = [
+        { teacher_code : 100 , teacher_name : "이초급" , class_name : "초급반" , class_price : 100000 , teacher_regist_date : 20220101 },
+        { teacher_code : 200 , teacher_name : "김중급" , class_name : "중급반" , class_price : 200000 , teacher_regist_date : 20220102 },
+        { teacher_code : 300 , teacher_name : "박고급" , class_name : "고급반" , class_price : 300000 , teacher_regist_date : 20220103 },
+        { teacher_code : 400 , teacher_name : "정심급" , class_name : "심화반" , class_price : 400000 , teacher_regist_date : 20220104 },
+    ];
+
+        let tbl_member_202201 = [
+        { c_no : 10001 , c_name : "홍길동" , phone : "01011112222" , address : "서울시 강남구" , grade : "일반" },
+        { c_no : 10002 , c_name : "장발장" , phone : "01022223333" , address : "성남시 분당구" , grade : "일반" },
+        { c_no : 10003 , c_name : "임꺽정" , phone : "01033334444" , address : "대전시 유성구" , grade : "일반" },
+        { c_no : 20001 , c_name : "성춘향" , phone : "01044445555" , address : "부산시 서구" , grade : "VIP" },
+        { c_no : 20002 , c_name : "이몽룡" , phone : "01055556666" , address : "대구시 북구" , grade : "VIP" },
+    ];
+
+    let tbl_class_202201 = [
+        { regist_month : 202203 , c_no : 10001 , class_area : "서울본원" , tuition : 100000 , teacher_code : 100 },
+        { regist_month : 202203 , c_no : 10002 , class_area : "성남본원" , tuition : 100000 , teacher_code : 100 },
+        { regist_month : 202203 , c_no : 10003 , class_area : "대전본원" , tuition : 200000 , teacher_code : 200 },
+        { regist_month : 202203 , c_no : 20001 , class_area : "부산본원" , tuition : 150000 , teacher_code : 300 },
+        { regist_month : 202203 , c_no : 20002 , class_area : "대구본원" , tuition : 200000 , teacher_code : 400 },
+        
+    ];
+
+    let viewList = getViewList(tbl_teacher_202201);
+    printViewList(viewList);
+    updateTotal(viewList,tbl_class_202201);
+    printViewList(viewList);
+    
+    
+
+</script>

@@ -1,0 +1,31 @@
+<script>
+
+    
+
+    let tbl_teacher_202201 = [
+        { teacher_code : 100 , teacher_name : "이초급" , class_name : "초급반" , class_price : 100000 , teacher_regist_date : 20220101 },
+        { teacher_code : 200 , teacher_name : "김중급" , class_name : "중급반" , class_price : 200000 , teacher_regist_date : 20220102 },
+        { teacher_code : 300 , teacher_name : "박고급" , class_name : "고급반" , class_price : 300000 , teacher_regist_date : 20220103 },
+        { teacher_code : 400 , teacher_name : "정심급" , class_name : "심화반" , class_price : 400000 , teacher_regist_date : 20220104 },
+    ];
+
+    /*
+        [문제]
+            tbl_teacher_202201 배열안의 teacher_regist_date 는 년 월 일 을 숫자로 표현한것이다.   
+            20220101 을 2022년01월01일 로 변경하시오. 
+            나머지 3개도 전부 같은 규칙으로 변경하시오.
+    */
+
+    for(let i = 0; i < tbl_teacher_202201.length; i++){
+            let a = tbl_teacher_202201[i]["teacher_regist_date"];
+            a = String(a);
+            let year = a.substr(0, 4);
+            let mon = a.substring(4, 6);
+            let day = a.substring(6, 8);
+            let str = year + "년" + mon + "월" + day + "일";
+            tbl_teacher_202201[i]["teacher_regist_date"] = str;
+            document.write(tbl_teacher_202201[i]["teacher_regist_date"] + "<Br>");
+        }
+
+    
+</script>

@@ -1,0 +1,145 @@
+<script>
+
+function getViewList(tbl_result){
+    let viewList = [];
+
+    for(let i=0;i<tbl_result.length;i++){
+        let data = {};
+        data["p_no"] = tbl_result[i].p_no;
+        data["p_name"] = tbl_result[i].p_no;
+        data["t_code"] = tbl_result[i].t_code;
+        data["t_sdate"] = tbl_result[i].t_sdate;
+        data["t_status"] = tbl_result[i].t_status;
+        data["t_ldate"] = tbl_result[i].t_ldate;
+        data["t_result"] = tbl_result[i].t_result;
+        viewList.push(data);
+    }
+
+    return viewList;
+}
+
+function printViewList(viewList){
+    for(let i=0;i<viewList.length;i++){
+        document.write(viewList[i].p_no+" ");
+        document.write(viewList[i].p_name+" ");
+        document.write(viewList[i].t_code+" ");
+        document.write(viewList[i].t_sdate+" ");
+        document.write(viewList[i].t_status+" ");
+        document.write(viewList[i].t_ldate+" ");
+        document.write(viewList[i].t_result+"<br>");
+    }
+    document.write("<hr>");
+}
+
+function updatePName(viewList,tbl_patient){
+    for(let i=0;i<viewList.length;i++){
+        for(let j=0;j<tbl_patient.length;j++){
+            if(viewList[i].p_name == tbl_patient[j].p_no){
+                viewList[i].p_name = tbl_patient[j].p_name;
+            }
+        }
+    }
+}
+
+function updateTname(viewList,tbl_test){
+    for(let i=0;i<viewList.length;i++){
+        for(let j=0;j<tbl_test.length;j++){
+            if(viewList[i].t_code == tbl_test[j].t_code){
+                viewList[i].t_code = tbl_test[j].t_name;
+            }
+        }
+    }
+}
+
+function updateSdate(viewList){
+    for(let i=0;i<viewList.length;i++){
+        let a = viewList[i].t_sdate;
+        let data = String(a);
+        let year = data.substring(0,4);
+        let mon = data.substring(4,6);
+        let day = data.substring(6,8);
+        let str = year+"-"+mon+"-"+day;
+        viewList[i].t_sdate = str;
+    }
+}
+
+function updateStatus(viewList){
+    for(let i=0;i<viewList.length;i++){
+        if(viewList[i].t_status == "1"){
+            viewList[i].t_status = "검사중";
+        }else if(viewList[i].t_status == "2"){
+            viewList[i].t_status = "검사완료";
+        }
+    }
+}
+
+function updateResult(viewList){
+    for(let i=0;i<viewList.length;i++){
+        let str = "";
+        if(viewList[i].t_result == "X"){
+            str = "미입력";
+        }else if(viewList[i].t_result == "P"){
+            str = "양성";
+        }else if(viewList[i].t_result == "N"){
+            str = "음성";
+        }
+        viewList[i].t_result = str;
+    }
+}
+
+function viewSort(viewList){
+    viewList.sort((a,b) =>{
+        if(a.p_no>b.p_no){
+            return 1;
+        }else if(a.p_no<b.p_no){
+            return -1;
+        }else {
+            return 0;
+        }
+    })
+}
+
+   
+
+    let tbl_patient_202004 = [
+        { p_no : "1001", p_name : "김환자", p_birth : "19850301", p_gender : "M", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0001", p_city : "10" },
+        { p_no : "1002", p_name : "이환자", p_birth : "19900301", p_gender : "M", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0002", p_city : "20" },
+        { p_no : "1003", p_name : "박환자", p_birth : "19770301", p_gender : "F", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0003", p_city : "30" },
+        { p_no : "1004", p_name : "조환자", p_birth : "19650301", p_gender : "F", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0004", p_city : "10" },
+        { p_no : "1005", p_name : "황환자", p_birth : "19400301", p_gender : "M", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0005", p_city : "40" },
+        { p_no : "1006", p_name : "양환자", p_birth : "19440301", p_gender : "F", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0006", p_city : "40" },
+        { p_no : "1007", p_name : "허환자", p_birth : "19760301", p_gender : "F", p_tel1 : "010", p_tel2 : "2222", p_tel3 : "0007", p_city : "10" },
+    ];
+
+   let tbl_test_202004 = [
+        { t_code : "T001", t_name : "결핵" },
+        { t_code : "T002", t_name : "장티푸스" },
+        { t_code : "T003", t_name : "수두" },
+        { t_code : "T004", t_name : "홍역" },
+        { t_code : "T005", t_name : "콜레라" },
+   ];
+
+   let tbl_result_202004 = [
+        { p_no : "1001", t_code : "T001", t_sdate : "20200101", t_status : "1", t_ldate : "20200102", t_result : "X" },
+        { p_no : "1002", t_code : "T002", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "P" },
+        { p_no : "1003", t_code : "T003", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "N" },
+        { p_no : "1004", t_code : "T004", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "P" },
+        { p_no : "1005", t_code : "T005", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "P" },
+        { p_no : "1006", t_code : "T001", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "N" },
+        { p_no : "1007", t_code : "T002", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "P" },
+        { p_no : "1005", t_code : "T003", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "P" },
+        { p_no : "1006", t_code : "T004", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "N" },
+        { p_no : "1007", t_code : "T005", t_sdate : "20200101", t_status : "2", t_ldate : "20200102", t_result : "N" },
+   ];
+    
+   let viewList = getViewList(tbl_result_202004);
+   printViewList(viewList);
+   viewSort(viewList);
+   updatePName(viewList,tbl_patient_202004);
+   updateTname(viewList,tbl_test_202004);
+   updateResult(viewList);
+   updateSdate(viewList);
+   updateStatus(viewList);
+   printViewList(viewList);
+
+</script>

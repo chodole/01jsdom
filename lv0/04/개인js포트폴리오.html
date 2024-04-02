@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div align="center" class="table"></div>
+
+    <script>
+
+        function getViewList(tbl_drink){
+            let viewList = [];
+            for(let i=0;i<tbl_drink.length;i++){
+                let data = {};
+                if(tbl_drink[i].category == "에스프레소"){
+                    data["d_no"] = tbl_drink[i].d_no;
+                    data["category"] = tbl_drink[i].category;
+                    data["d_name"] = tbl_drink[i].d_name;
+                    data["price"] = tbl_drink[i].price;
+                    viewList.push(data);
+                }
+            }
+            return viewList;
+        }
+    
+        function printViewList(viewList){
+            let a = document.querySelector(".table");
+            let str = ``;
+            str += `
+            <table border = "1">
+                <tr> 
+                    <td colspan = "4" align ="center"> <h3>에스프레소 목록</h3> </td>
+                </tr>
+                <tr>
+                    <td>음료코드</td>
+                    <td>카테고리</td>
+                    <td>이름</td>
+                    <td>가격</td>
+                </tr>
+                
+                `;
+            for(let i=0;i<viewList.length;i++){
+                str += `
+                    <tr>
+                        <td>${viewList[i].d_no}</td>
+                        <td>${viewList[i].category}</td>
+                        <td>${viewList[i].d_name}</td>
+                        <td>${viewList[i].price}</td>
+                    </tr>
+                `;
+            }
+            str += `</table>`;
+
+            a.innerHTML = str;
+        }
+    
+        let tbl_drink = [
+            {d_no : "A01", category: "콜드브루커피", d_name: "돌체 콜드브루", price: 6000, allergy:"우유"},
+            {d_no : "A02", category: "콜드브루커피", d_name: "오트 콜드브루", price: 5800, allergy:""},
+            {d_no : "B01", category: "에스프레소", d_name: "카페 아메리카노", price: 4500, allergy:""},
+            {d_no : "B02", category: "에스프레소", d_name: "카푸치노", price: 5000, allergy:"우유"},
+            {d_no : "B03", category: "에스프레소", d_name: "카페모카", price: 5000, allergy:"우유"},
+            {d_no : "B04", category: "에스프레소", d_name: "카페라떼", price: 5000, allergy:"우유"},
+            {d_no : "B05", category: "에스프레소", d_name: "카라멜 마키아또", price: 5900, allergy:"우유"},
+            {d_no : "B06", category: "에스프레소", d_name: "에스프레소", price: 4000, allergy:""},
+            {d_no : "C01", category: "프라푸치노", d_name: "자바칩 프라푸치노", price: 6300, allergy:"대두,우유,밀"},
+            {d_no : "D01", category: "블렌디드", d_name: "망고 바나나 블렌디드", price: 6300, allergy:""},
+            {d_no : "E01", category: "리프레셔", d_name: "아사이 레모네이드 스타벅스 리프레셔", price: 5900, allergy:""},
+            {d_no : "F01", category: "피지오", d_name: "피치 딸기 피지오", price: 5700, allergy:"복숭아"},
+            {d_no : "F01", category: "피지오", d_name: "쿨라임피지오", price: 5900, allergy:""},
+            {d_no : "G01", category: "티(티바나)", d_name: "민트블렌드티", price: 4500, allergy:""},
+            {d_no : "G02", category: "티(티바나)", d_name: "자몽허니블랙티", price: 5700, allergy:""},
+            {d_no : "H01", category: "기타제조음료", d_name: "시그니처핫초콜릿", price: 5700, allergy:"우유"}
+        ];
+    
+        //-- Q1 에스프레소 카테고리를 가진 제품의 음료코드, 카테고리, 이름, 가격을 출력하시오
+        let viewList = getViewList(tbl_drink);
+        printViewList(viewList);
+    
+    </script>
+
+    
+</body>
+</html>

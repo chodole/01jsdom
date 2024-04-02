@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div align="center" class="table"></div>
+
+    <script>
+
+        function getData(tbl_drink){
+            let max = 0;
+            let maxIndex = 0;
+    
+            for(let i=0;i<tbl_drink.length;i++){
+                let count = 0;
+                for(let j=0;j<tbl_drink.length;j++){
+                    if(tbl_drink[i].category == tbl_drink[j].category){
+                        count++;
+                    }
+                }
+                if(count>max){
+                    max = count;
+                    maxIndex = i;
+                }
+            }
+    
+            let data = {};
+            data["category"] = tbl_drink[maxIndex].category;
+            data["d_count"] =max;
+            
+            return data;
+        }
+    
+        function printData(data){
+            let a = document.querySelector(".table");
+            let str = ``;
+
+            str+= `
+                <table border="1">
+                    <tr>
+                        <td colspan="2" align="center"> <h3> 가장 많은 제품 </h3></td>
+                    <tr>
+                    <tr>
+                        <td>카테고리</td>
+                        <td>갯수</td>
+                    </tr>
+                    <tr>
+                        <td>${data.category}</td>
+                        <td>${data.d_count}</td>
+                    </tr>
+                </tabler>
+            `;
+            
+            a.innerHTML = str;
+        }
+    
+        let tbl_drink = [
+            {d_no : "A01", category: "콜드브루커피", d_name: "돌체 콜드브루", price: 6000, allergy:"우유"},
+            {d_no : "A02", category: "콜드브루커피", d_name: "오트 콜드브루", price: 5800, allergy:""},
+            {d_no : "B01", category: "에스프레소", d_name: "카페 아메리카노", price: 4500, allergy:""},
+            {d_no : "B02", category: "에스프레소", d_name: "카푸치노", price: 5000, allergy:"우유"},
+            {d_no : "B03", category: "에스프레소", d_name: "카페모카", price: 5000, allergy:"우유"},
+            {d_no : "B04", category: "에스프레소", d_name: "카페라떼", price: 5000, allergy:"우유"},
+            {d_no : "B05", category: "에스프레소", d_name: "카라멜 마키아또", price: 5900, allergy:"우유"},
+            {d_no : "B06", category: "에스프레소", d_name: "에스프레소", price: 4000, allergy:""},
+            {d_no : "C01", category: "프라푸치노", d_name: "자바칩 프라푸치노", price: 6300, allergy:"대두,우유,밀"},
+            {d_no : "D01", category: "블렌디드", d_name: "망고 바나나 블렌디드", price: 6300, allergy:""},
+            {d_no : "E01", category: "리프레셔", d_name: "아사이 레모네이드 스타벅스 리프레셔", price: 5900, allergy:""},
+            {d_no : "F01", category: "피지오", d_name: "피치 딸기 피지오", price: 5700, allergy:"복숭아"},
+            {d_no : "F01", category: "피지오", d_name: "쿨라임피지오", price: 5900, allergy:""},
+            {d_no : "G01", category: "티(티바나)", d_name: "민트블렌드티", price: 4500, allergy:""},
+            {d_no : "G02", category: "티(티바나)", d_name: "자몽허니블랙티", price: 5700, allergy:""},
+            {d_no : "H01", category: "기타제조음료", d_name: "시그니처핫초콜릿", price: 5700, allergy:"우유"}
+        ];
+    
+        //-- Q2 가장 제품을 많이 가지고 있는 카테고리와 갯수를 출력하시오
+        let data = getData(tbl_drink);
+        printData(data);
+    
+    </script>
+    
+</body>
+</html>
+

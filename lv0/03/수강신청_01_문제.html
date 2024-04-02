@@ -1,0 +1,96 @@
+<script>
+
+function getViewList(course_tbl){
+    let viewList = [];
+
+    for(let i=0;i<course_tbl.length;i++){
+        viewList.push(course_tbl[i]);
+    }
+    return viewList;
+}
+
+function printViewList(viewList){
+    for(let i=0;i<viewList.length;i++){
+        document.write(viewList[i].id+" ");
+        document.write(viewList[i].name+" ");
+        document.write(viewList[i].credit+" ");
+        document.write(viewList[i].lecturer+" ");
+        document.write(viewList[i].week+" ");
+        document.write(viewList[i].start_hour+" ");
+        document.write(viewList[i].end_hour+"<br>");
+    }
+    document.write("<hr>");
+}
+
+function updateHour(viewList){
+    for(let i=0;i<viewList.length;i++){
+        let a = viewList[i].start_hour;
+        let start = String(a);
+        let hour = start.substring(0,2);
+        let min = start.substring(2);
+        let str = hour+"시"+min+"분";
+        viewList[i].start_hour = str;
+
+        let b = viewList[i].end_hour;
+        let end = String(b);
+        hour = end.substring(0,2);
+        min = end.substring(2);
+        str = hour+"시"+min+"분";
+        viewList[i].end_hour = str;
+    }
+}
+
+function updateLecturer(viewList,lecturer_tbl){
+    for(let i=0;i<viewList.length;i++){
+        for(let j=0;j<lecturer_tbl.length;j++){
+            if(viewList[i].lecturer == lecturer_tbl[j].idx){
+                viewList[i].lecturer = lecturer_tbl[j].name;
+            }
+        }
+    }
+}
+
+function updateWeek(viewList){
+    for(let i=0;i<viewList.length;i++){
+        let str = "";
+        switch(viewList[i].week){
+            case 1: str = "월요일"; break;
+            case 2: str = "화요일"; break;
+            case 3: str = "수요일"; break;
+            case 4: str = "목요일"; break;
+            case 5: str = "금요일"; break;
+        }
+        viewList[i].week = str;
+    }
+}
+   
+    let course_tbl = [
+        { id : "10001", name : "애플리케이션 배포"      , credit : 2, lecturer : "1", week : 1, start_hour : "0900", end_hour : "1100"},
+        { id : "10002", name : "프로그래밍 언어 활용"   , credit : 2, lecturer : "2", week : 2, start_hour : "0900", end_hour : "1200"},
+        { id : "10003", name : "응용SW기초기술 활용"    , credit : 3, lecturer : "6", week : 3, start_hour : "0900", end_hour : "1200"},
+        { id : "10004", name : "화면구현"               , credit : 3, lecturer : "4", week : 4, start_hour : "0900", end_hour : "1200"},
+        { id : "20001", name : "애플리케이션 테스트 수행", credit : 3, lecturer : "5", week : 1, start_hour : "1300", end_hour : "1600"},
+        { id : "20002", name : "SQL 활용"               , credit : 3, lecturer : "2", week : 2, start_hour : "1500", end_hour : "1800"},
+        { id : "20003", name : "UI 테스트"              , credit : 2, lecturer : "6", week : 3, start_hour : "1330", end_hour : "1630"},
+        { id : "30001", name : "화면 설계"              , credit : 2, lecturer : "3", week : 4, start_hour : "1330", end_hour : "1530"},
+        { id : "30002", name : "네트워크 프로그래밍 구현", credit : 3, lecturer : "3", week : 5, start_hour : "0900", end_hour : "1200"},
+        { id : "40001", name : "스마트문화앱구현"        , credit : 3, lecturer : "2", week : 5, start_hour : "1300", end_hour : "1600"},
+    ];
+
+    let lecturer_tbl = [
+        {idx : 1, name : "김교수", major : "소프트웨어공학"},
+        {idx : 2, name : "이교수", major : "프로그래밍"},
+        {idx : 3, name : "박교수", major : "네트워크"},
+        {idx : 4, name : "우교수", major : "운영체제"},
+        {idx : 5, name : "최교수", major : "자료구조"},
+        {idx : 6, name : "임교수", major : "인공지능"},
+    ];
+
+let viewList = getViewList(course_tbl);
+printViewList(viewList);
+updateHour(viewList);
+updateLecturer(viewList,lecturer_tbl);
+updateWeek(viewList);
+printViewList(viewList);
+
+</script>
