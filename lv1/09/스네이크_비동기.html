@@ -11,25 +11,43 @@
             height: 40px;
             text-align: center;     /* 가로 중앙정렬 */
         }
+        div{
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+        #clickKey{
+            display: inline-block;
+        }
+        #score{
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body onload="AutoMove('down')">
 
     <div id="snakeMap"></div>
-    <br><br>
-    <table align="center">
-        <tr>
-            <td></td>
-            <td id="up" style="background-color: tomato;">△</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td id="left" style="background-color: tomato;">◁</td>
-            <td id="down" style="background-color: tomato;">▽</td>
-            <td id="right" style="background-color: tomato;">▷</td>
-        </tr>
-    </table>
-    <div id ="score"> 0 점</div>
+    <div id="clickKey">
+        <table>
+            <tr>
+                <td></td>
+                <td id="up" style="background-color: tomato;">△</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="left" style="background-color: tomato;">◁</td>
+                <td id="down" style="background-color: tomato;">▽</td>
+                <td id="right" style="background-color: tomato;">▷</td>
+            </tr>
+        </table>
+        <div id ="score"> 0 점</div>
+    </div>
+    
 
     <script>
         let map = document.querySelector("#snakeMap");
@@ -42,12 +60,21 @@
         makeSnake();
 
         let autoMove = null;
+        let scoreCheck = null;
 
         function AutoMove(text){
             if(autoMove != null){
                 clearInterval(autoMove);
+            }else {
+                scoreCheck = setInterval(scoreCount,1000);
             }
             autoMove = setInterval(function(){move(text)},60);
+        }
+
+        function scoreCount() {
+            score+=1;
+            let scoreId = document.querySelector("#score");
+            scoreId.innerHTML = score+" 점";
         }
 
         function move(text){
@@ -66,12 +93,14 @@
 
             if(wall) {
                 clearInterval(autoMove);
-                alert("벽에 부딫혔습니다 \n점수 : "+score+"점");
-
+                
                 head = [0,0];
                 taleList = [[0,1],[0,2],[0,3]];
                 taleMove = ["left","left","left"];
-                score = 0;
+                
+                alert("벽에 부딪혔습니다 \n점수 : "+score+" 점");
+                score = -1;
+
                 map.innerHTML = "";
                 makeSnake();
                 AutoMove("down");
@@ -84,10 +113,6 @@
                 taleMove[1] = taleMove[0];
                 taleMove[0] = text;
             }
-
-            score+=1;
-            let scoreId = document.querySelector("#score");
-            scoreId.innerHTML = score+"점";
                 
             map.innerHTML = "";
             makeSnake();
