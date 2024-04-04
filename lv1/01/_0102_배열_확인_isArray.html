@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 확인 - isArray()</title>
+</head>
+<body>
+
+	<script>
+        
+		/* 
+			[개념] 배열 타입
+				(1) 자바스크립트 배열은 객체(object) 타입이다.
+				(2) Array.isArray() 를 통해 해당 변수가 배열인지 여부를 확인할 수 있다.
+		*/
+
+		let arr = [1, "a", true];
+		document.write(typeof arr, "<br>");				// object => array, json, 클래스
+		
+		document.write(Array.isArray(arr) + "<br>");	// true
+		document.write(Array.isArray(123));				// false
+		
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 인덱스 검색 - indexOf()</title>
+</head>
+<body>
+    
+    <script>
+        
+        /*
+            [개념] 배열 인덱스 검색
+                (1) indexOf() 
+                (2) 인자로 주어진 값을 검색해 첫 번째 인덱스를 반환한다.
+                (3) 존재하지 않으면 -1을 반환한다.
+        */
+
+        let arr = ["미금", "당곡", "정자", "수서", "양재", "당곡"];
+
+      
+        let idx = arr.indexOf("강남");
+        if(idx != -1) {
+            document.write(idx);
+        } else {
+            document.write("없는 단어입니다.<br>")
+        }
+
+        let index = arr.indexOf("정자");
+        document.write(index + "<br>");             
+
+        index = arr.indexOf("당곡");
+        document.write(index + "<br>");              
+        
+        // 두번째 당곡 글자의 위치
+        index = arr.indexOf("당곡", 2);
+        document.write(index + "<br>");              
+        
+        index = arr.indexOf("강남");
+        document.write(index);                       
+
+    </script>
+
+</body>
+</html>

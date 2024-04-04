@@ -1,0 +1,48 @@
+<script>
+
+    /*
+        var, let, const
+
+        (1) var는 함수 스코프
+            - 함수 내에서 선언된 변수만 그 지역변수
+        (2) let, const는 블록 스코프(함수, if, for, while, try-catch 등)
+            블록 스코프는 모든 코드 블럭 내에서 선언된 변수는 
+            코드 블록 내에서만 유효
+            외부에서는 접근 불가능
+            즉 코드 블록 내부에서 선언한 변수는 지역 변수
+
+            1) 값 변경을 위해서는 let
+            2) 값 변경하지 않을때는 const를 사용(상수) 
+    */
+
+    // 1. const 는 상수이므로 선언과 동시에 할당해야한다. 
+    //    한번 할당하면 값을 변경할 수 없다.  
+    const SIZE = 5;
+    // SIZE = 100;       // 오류발생
+    
+    // 2. var는 함수 스코프로 블록 스코프에서 선언하더라도 외부에서 접근이 가능하다.
+    let age = 30;
+    if (age > 19) {
+        var txt = '성인';
+    }
+    console.log(txt); // '성인'
+
+    // 3. var는 함수 스코프로 함수 내에서 선언되면 함수 밖에서 사용할 수 없다.
+    //    유일하게 벗어날 수 없는 스코프가 함수이다.
+    function add(num1, num2) {
+        var result = num1 + num2;
+    }
+    add(2, 3);
+    // console.log(result);     // 오류발생
+
+    // 4. var는 한번 선언된 변수를 다시 선언 가능
+    var name = 'Mike';
+    console.log(name); // Mike
+    var name = 'Jane'
+    console.log(name); // Jane
+    
+    // 5. 반면 let은 같은 상황에서 에러발생
+    let msg = 'Hi';
+    // let msg = 'hello' // 오류발생
+
+</script>

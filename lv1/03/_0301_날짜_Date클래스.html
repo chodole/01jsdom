@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date클래스</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+            [개념] Date 클래스
+        */
+
+        let monthList  = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let hangulYoil = ["일", "월", "화", "수", "목", "금", "토"];
+
+        let today = new Date();
+        document.write(today + "<br>");
+
+        // 월과 요일은 배열로 찾아야하므로 0부터 시작한다.
+        let month = today.getMonth();   // 0월부터 시작
+        document.write(`${month + 1}월은 총 ${monthList[month]}일 입니다.<br>`);
+
+        let date = today.getDate();
+        let day = today.getDay();       // 일(0) ~ 토(6)
+        document.write(`${month + 1}월 ${date}일 ${hangulYoil[day]}요일<br>`);
+
+        let hour = today.getHours();
+        let minute = today.getMinutes();
+        let second = today.getSeconds();
+        document.write(`${hour}시 ${minute}분 ${second}초<br>`);
+
+    </script>
+    
+</body>
+</html>

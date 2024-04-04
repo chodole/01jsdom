@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick</title>
+</head>
+<body>
+
+    <!--
+        [개념] 이벤트 추가하기
+            (1) HTML 속성 : onclick="함수명()"
+            (2) DOM 속성 : elem.onclick = function
+            (3) 메서드 : elem.addEventListener(이벤트명, 실행할이벤트함수)
+    -->
+
+    <button id="btn">버튼1</button>
+
+    <script>
+        let btn = document.querySelector("#btn");
+        btn.onclick = function() {
+            alert("클릭!");
+        }
+    </script>
+
+</body>
+</html>

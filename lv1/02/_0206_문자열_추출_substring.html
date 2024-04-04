@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 추출 - substring()</title>
+</head>
+<body>
+    
+    <script>
+
+        /*
+            [개념] 문자열 추출
+                (1) substring(인덱스)
+                (2) 문자열의 일부를 추출해 
+                    새로운 문자열을 반환한다.
+        */
+
+        let text = "Hello, JavaScript!";
+
+        let rs = text.substring(7);             // 7번째부터 끝까지 추출
+        document.write(rs + "<br>");
+        
+        rs = text.substring(0, 5);              // 0번째부터 5번째 미만까지 추출
+        document.write(rs + "<br>");
+
+        document.write("===========================<br>");
+        //slice와 substring의 차이점
+        let a = text.substring(5,0);
+        let b = text.slice(5,0);
+        document.write("a :"+a+"<br>");
+        document.write("b :"+b+"<br>");
+
+        a = text.substring(-8,10);
+        b = text.slice(-8);
+        document.write("a :"+a+"<br>");
+        document.write("b :"+b+"<br>");
+
+        a = text.substring(0, -2);
+        b = text.slice(0, -2);
+        document.write("a :"+a+"<br>");
+        document.write("b :"+b+"<br>");
+
+    </script>
+    
+</body>
+</html>

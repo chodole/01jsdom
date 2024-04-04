@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+     <!--
+        [개념] setInterval() 메서드
+            (1) setInterval(함수명, 시간)
+            (1) 지정된 간격(밀리초)으로 함수를 호출한다.
+            (2) 메서드는 창이 닫힐 때까지 setInterval() 을 계속 호출한다.
+            (3) 1초 = 1000밀리초
+    -->
+
+    <h1>일정 시간 간격으로 값 증감시키기</h1>
+    <!--clearInterval()은 Interval함수를 정지시킴-->
+    <button onclick = "clearInterval(auto)">증가 정지</button>
+
+    <script>
+        let num = 0;
+        function addNumber(){
+            num++;
+            console.log("num: "+num);
+        }
+
+        let auto = setInterval(addNumber, 100);
+    </script>
+    
+</body>
+</html>

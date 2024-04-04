@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    HTML<input type="checkbox" class="subject" value="html">
+    CSS<input type="checkbox" class="subject" value="css">
+    JavaScript<input type="checkbox" class="subject" value="javascript">
+
+    <button onclick="checkSub()">제출</button>
+
+    <p id="result"></p>
+
+    <script>
+        function checkSub(){
+            let list = document.querySelectorAll(".subject");
+            let result = document.querySelector("#result");
+
+            result.innerHTML = "선택한 과목은 :";
+            for(let i=0;i<list.length;i++){
+                if(list[i].checked){
+                    result.innerHTML+=list[i].value + " ";
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

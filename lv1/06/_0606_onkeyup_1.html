@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onkeyup</title>
+</head>
+<body>
+
+    <!--
+        [개념] 이벤트 종류
+            (1) onblur : 내용 변경에 관계없이 HTML 요소가 포커스를 잃으면 이벤트가 발생한다.
+            (2) onchange : 내용이 변경 된 후 HTML 요소가 포커스를 잃으면 이벤트가 발생한다.
+            (3) onfocus : HTML 요소가 포커스를 받으면 이벤트가 발생한다.
+            (4) oninput
+                1) <input> 또는 <textarea> 요소의 값이 변경될 때 발생하는 이벤트이다.
+                2) onchange와 유사하나 oninput은 내용이 변경된 직후 이벤트가 발생한다.
+            (5) onkeyup / onkeydown : 키보드의 키를 놓을/누를 때 이벤트가 발생한다.
+            (6) onload
+                1) 객체가 로드되었을 때 이벤트가 발생한다.
+                2) 웹 페이지가 모든 콘텐츠를 완전히 로드한 후 스크립트를 실행하기 위해 
+                    <body> 요소 내에서 가장 자주 사용한다.
+            (7) onclick : HTML 요소를 클릭했을 때 이벤트가 발생한다.
+    -->      
+    
+    <input type="text" id="myInput" placeholder="영어소문자를 입력하세요.">
+
+    <script>
+        document.querySelector("#myInput").addEventListener("keyup", keyupFunction);
+
+        function keyupFunction() {
+            let element = document.querySelector("#myInput");
+            element.value = element.value.toUpperCase();
+        }
+
+    </script>
+
+</body>
+</html>

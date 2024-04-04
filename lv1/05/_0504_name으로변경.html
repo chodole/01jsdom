@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByName()</title>
+</head>
+<body>
+
+    <h3 id="target">과목 선택</h3>
+
+    HTML<input type="checkbox" name="subject" value="html">
+    CSS<input type="checkbox" name="subject" value="css">
+    JavaScript<input type="checkbox" name="subject" value="javascript">
+    <!-- JavaScript<input type="checkbox" name="subject" value="javascript" checked> -->
+
+    <script>
+        let list = document.getElementsByName("subject");
+        
+        // 체크박스 체크로 변경
+        for(let i=0; i<list.length; i++) {
+            list[i].checked = true;
+        }
+    </script>
+
+</body>
+</html>

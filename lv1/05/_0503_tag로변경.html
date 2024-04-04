@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByTagName()</title>
+</head>
+<body>
+
+    <p>getElementsByTagName() 메서드1</p>
+    <p>getElementsByTagName() 메서드2</p>
+    <p>getElementsByTagName() 메서드3</p>
+
+    <script>
+        let collection = document.getElementsByTagName("p");
+
+        let colorList = ["red", "tomato", "green"];
+
+        // 배경색상 변경
+        for(let i=0; i<collection.length; i++) {
+            // collection[i].style.backgroundColor = "yellow";
+            collection[i].style.backgroundColor = colorList[i];
+        }
+    </script>
+
+</body>
+</html>

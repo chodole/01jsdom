@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick</title>
+</head>
+<body>
+	<style>
+		#out_div {
+			background: green;
+			height: 400px;
+			width: 400px;
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		#in_div {
+			background: yellow;
+			height: 100px;
+			width: 100px;
+			display: inline-block;
+		}
+	</style>
+
+	<div id='out_div'>
+		<div id='in_div'></div>
+	</div>
+	
+	<input id='clearbtn' type='button' value='clear' />
+		<div id='result'>
+	</div>
+
+	<script type="text/javascript">
+		let div = document.getElementById('out_div');
+		let clearbtn = document.getElementById('clearbtn');
+		let result = document.getElementById('result');
+
+		div.addEventListener('mouseover', (event) => {
+		result.innerHTML+= `<div>mouseover ${event.target.id}</div>`;
+		});
+
+		div.addEventListener('mouseout', (event) => {
+		result.innerHTML+= `<div>mouseout ${event.target.id}</div>`;
+		});
+
+		clearbtn.addEventListener('click', (event) => {
+		result.innerHTML= '';
+		count = 0;
+		});
+
+
+	</script>
+</body>
+
+</html>

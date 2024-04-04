@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="target">
+    <button onclick="changeColor()">배경색 바꾸기</button>
+    
+    <script>
+        let colorList = ["yellow","aqua","purple","white"];
+
+        let i =0;
+        function changeColor(){
+            let target = document.querySelector("#target");
+            target.style.backgroundColor = colorList[i];
+
+            i+=1;
+            if(i>=colorList.length){
+                i=0;
+            }
+        }
+    </script>
+</body>
+</html>

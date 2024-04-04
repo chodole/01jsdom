@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            text-align: center;     /* 가로 중앙정렬 */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let clickEvent = function(e){
+            for(let i=0;i<tdList.length;i++){
+                if(e.target.innerText == tdList[i].innerText){
+                    alert(i);
+                }
+            }
+        }
+
+        let body = document.body;
+        let table = document.createElement("table");
+        let tr = document.createElement("tr");
+
+        let tdList = [];
+        for(let i=0;i<5;i++){
+            let td = document.createElement("td");
+            td.addEventListener("click",clickEvent);
+            td.innerText = i+1;
+            tr.append(td);
+
+            tdList.push(td);
+        }
+        table.append(tr);
+        body.append(table);
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            text-align: center;     /* 가로 중앙정렬 */
+        }
+    </style>
+</head>
+<body onload="AutoMove('down')">
+
+    <div id="snakeMap"></div>
+    <br><br>
+    <table align="center">
+        <tr>
+            <td></td>
+            <td id="up" style="background-color: tomato;">△</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td id="left" style="background-color: tomato;">◁</td>
+            <td id="down" style="background-color: tomato;">▽</td>
+            <td id="right" style="background-color: tomato;">▷</td>
+        </tr>
+    </table>
+    <div id ="score"> 0 점</div>
+
+    <script>
+        let map = document.querySelector("#snakeMap");
+        let head = [0,0];
+        let taleList = [[0,1],[0,2],[0,3]];
+        let taleMove = ["left","left","left"];
+        let wall = false;
+        let score = 0;
+
+        makeSnake();
+
+        let autoMove = null;
+
+        function AutoMove(text){
+            if(autoMove != null){
+                clearInterval(autoMove);
+            }
+            autoMove = setInterval(function(){move(text)},60);
+        }
+
+        function move(text){
+            let check = moveCheck(text);
+
+            if(check){
+                text = taleMove[0];
+            }
+
+            switch(text){
+                case "right" : moveRight(head); break;
+                case "left" : moveLeft(head); break;
+                case "up" : moveUp(head); break;
+                case "down": moveDown(head); break;
+            }
+
+            if(wall) {
+                clearInterval(autoMove);
+                alert("벽에 부딫혔습니다 \n점수 : "+score+"점");
+
+                head = [0,0];
+                taleList = [[0,1],[0,2],[0,3]];
+                taleMove = ["left","left","left"];
+                score = 0;
+                map.innerHTML = "";
+                makeSnake();
+                AutoMove("down");
+                return;
+            }
+
+            if(!wall) {
+                taleMoveFun();
+                taleMove[2] = taleMove[1];
+                taleMove[1] = taleMove[0];
+                taleMove[0] = text;
+            }
+
+            score+=1;
+            let scoreId = document.querySelector("#score");
+            scoreId.innerHTML = score+"점";
+                
+            map.innerHTML = "";
+            makeSnake();
+            
+        }
+
+        function taleMoveFun(){
+            for(let i=0;i<taleList.length;i++){
+                switch(taleMove[i]){
+                    case "right" : moveRight(taleList[i]); break;
+                    case "left" : moveLeft(taleList[i]); break;
+                    case "up" : moveUp(taleList[i]); break;
+                    case "down": moveDown(taleList[i]); break;
+                }
+            }
+        }
+
+        function moveCheck(text){
+            if(text == "right"){
+                let lastCheck = head[1]+1 == taleList[2][1] && head[0] == taleList[2][0];
+                if(head[1]+1 == taleList[0][1] || lastCheck){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else if(text == "left"){
+                let lastCheck = head[1]-1 == taleList[2][1] && head[0] == taleList[2][0];
+                if(head[1]-1 == taleList[0][1] || lastCheck){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else if(text == "up"){
+                let lastCheck = head[0]-1 == taleList[2][0] && head[1] == taleList[2][1];
+                if(head[0]-1 == taleList[0][0] || lastCheck){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else if(text == "down"){
+                let lastCheck = head[0]+1 == taleList[2][0] && head[1] == taleList[2][1];
+                if(head[0]+1 == taleList[0][0] || lastCheck){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        function moveLeft(list){
+            if(list[1]<=0){
+                list[1]=0;
+                wall = true;
+            }else{
+                list[1]--;
+                wall = false;
+            }
+        }
+
+        function moveRight(list){
+            if(list[1]>=8){
+                list[1]=8;
+                wall = true;
+            }else {
+                list[1]++;
+                wall = false;
+            }
+        }
+
+        function moveUp(list){
+            if(list[0]<=0){
+                list[0]=0;
+                wall = true;
+            }else{
+                list[0]--;
+                wall = false;
+            }
+        }
+
+        function moveDown(list){
+            if(list[0]>=8){
+                list[0]=8;
+                wall = true;
+            }else{
+                list[0]++;
+                wall = false;
+            }
+        }
+        
+
+        let right = document.querySelector("#right");
+        let up = document.querySelector("#up");
+        let left = document.querySelector("#left");
+        let down = document.querySelector("#down");
+
+        right.addEventListener("click",function(){AutoMove("right");});
+        up.addEventListener("click",function(){AutoMove("up");});
+        left.addEventListener("click",function(){AutoMove("left");});
+        down.addEventListener("click",function(){AutoMove("down");});
+
+        window.addEventListener("keydown",(e)=>{
+            if(e.code == "ArrowRight"){
+                AutoMove("right");
+            }else if(e.code == "ArrowLeft"){
+                AutoMove("left");
+            }else if(e.code == "ArrowUp"){
+                AutoMove("up");
+            }else if(e.code == "ArrowDown"){
+                AutoMove("down");
+            }
+        })
+
+
+        function makeSnake(){
+            let table = document.createElement("table");
+            
+            for(let i =0;i<9;i++){
+                let tr = document.createElement("tr");
+
+                for(let j=0;j<9;j++){
+                    let td = document.createElement("td");
+                    snakeTail(td,i,j);
+                    tr.append(td);
+                }
+                table.append(tr);
+            }
+            map.append(table);
+        }
+
+        function snakeTail(e,i,j){
+            if(i==head[0] && j==head[1]){
+                e.style.backgroundColor = "blue";
+            }
+
+            for(let k=0;k<taleList.length;k++){
+                if(i==taleList[k][0] && j==taleList[k][1]){
+                    e.style.backgroundColor="tomato";
+                }
+            }
+        }
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByClassName()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.getElementsByClassName("class명") 메서드
+            (1) 지정된 class 이름을 가진 모든 요소를 선택해 HTMLCollection을 반환
+            (2) HTMLCollection 이란 
+                    1) 배열과 유사한 HTML 요소 모음
+                    2) 인덱스(0부터 시작)로 접근 가능
+                    3) length 속성은 요소의 개수 반환
+    -->
+    <p class="content">getElementsByClassName() 메서드1</p>
+    <p class="content">getElementsByClassName() 메서드2</p>
+
+    <script>
+        // 태그 선택
+        let collection = document.getElementsByClassName("content");
+        console.log(collection[0].innerText);     
+        console.log(collection[1].innerText);     
+
+        // 내용 변경
+        document.getElementsByClassName("content")[1].innerText = "Hello, JavaScript";
+    </script>
+
+</body>
+</html>

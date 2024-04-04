@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByTagName()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.getElementsByTagName("tag명") 메서드
+            (1) 해당 tag 이름을 가지는 모든 요소를 선택해 
+                HTMLCollection을 반환
+    -->
+ 
+    <h3>학습 과목</h3>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+
+    <script>
+        // 태그 선택
+        let element = document.getElementsByTagName("li");
+        console.log(element);
+
+        // 배열 : 반복문
+        for(let i=0; i<element.length; i++) {
+            console.log(element[i].innerText);
+        }
+
+        console.log(element[1].innerText);     // CSS
+
+        // 내용 변경
+        element[1].innerText = "Cascading Style Sheets";
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let nodeEvent = function(e) {
+            e.target.innerText = "눌렀음";
+        }
+
+        let body = document.body;
+        let node = document.createElement("td");
+        node.addEventListener("click",nodeEvent);
+
+        body.append(node);
+    </script>
+    
+</body>
+</html>

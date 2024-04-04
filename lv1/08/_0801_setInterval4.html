@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content {
+            width: 300px;
+            height: 300px;
+            font-size: 100px;
+            text-align: center;     /* 텍스트 가로 가운데 정렬 */
+            line-height: 300px;     /* 텍스트 세로 가운데 정렬 */
+
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        0
+    </div>
+    <button onclick="stopCnt()">중지</button>
+
+    <script>
+        let element = document.getElementById("content");
+        let myTimer = setInterval(addCnt, 1000);
+
+        let cnt = 0;
+        function addCnt(){
+            cnt++;
+            element.innerHTML = cnt;
+        }
+
+        function stopCnt(){
+            clearInterval(myTimer);
+        }
+    </script>
+</body>
+</html>

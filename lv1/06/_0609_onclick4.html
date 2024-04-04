@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick</title>
+</head>
+<body>
+    
+    과일선택 
+    <select id="fruits">
+        <option value="0">선택하세요</option>
+        <option value="1">사과</option>
+        <option value="2">배</option>
+        <option value="3">바나나</option>
+    </select>
+    
+    <input type="button" onclick="checkSelection('하나를 선택하여야 합니다.')" value="확인">
+    
+    <p id="result"></p>
+
+    <script>
+        function checkSelection(msg) {
+            let elem = document.getElementById("fruits");
+            if (elem.value == 0) {
+                alert(msg);
+                document.querySelector("#result").innerText = msg;
+                elem.focus();
+            } else {
+                document.querySelector("#result").innerText = "선택하신 과일은 " + elem.children[elem.value].innerText + "입니다.";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 추출 - slice()</title>
+</head>
+<body>
+    
+    <script>
+
+        /*
+            [개념] 배열 추출
+                (1) slice(시작위치, 마지막위치) 
+                (2) 원본 배열은 유지하고 시작위치 부터 
+                    마지막 위치 미만까지의
+                (3) 새로운 배열을 반환한다.
+        */
+
+        let arr = ["미금", "정자", "수서", "양재", "당곡"];
+
+
+        let rs = arr.slice();                   // 0번부터 끝까지 추출
+        document.write(rs + "<br>");            // 미금,정자,수서,양재,당곡
+        
+        rs = arr.slice(1);                      // 1번부터 끝까지 추출
+        document.write(rs + "<br>");            // 정자,수서,양재,당곡
+        
+        rs = arr.slice(1, 4);                   // 1번부터 4번미만까지 추출
+        document.write(rs + "<br>");            // 정자,수서,양재
+
+        document.write(arr);                    // 미금,정자,수서,양재,당곡
+
+    </script>
+
+</body>
+</html>

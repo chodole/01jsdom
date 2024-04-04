@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>학생 명단</h4>
+    <div id="list"></div>
+
+    <script>
+        let stList = [
+            {"name": "Hong", "age":21},
+            {"name": "Kim", "age":22},
+            {"name": "Park", "age":23}
+        ];
+
+        let list = document.querySelector("#list");
+        for(let i=0;i<stList.length;i++){
+            let p = document.createElement("p");
+            p.append(`이름 : ${stList[i].name}, 나이 : ${stList[i].age}`);
+            list.append(p);
+        }
+    </script>
+    
+</body>
+</html>

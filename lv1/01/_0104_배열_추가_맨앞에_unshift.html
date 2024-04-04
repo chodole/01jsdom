@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 추가 - unshift()</title>
+</head>
+<body>
+	
+	<script>
+
+		/* 
+			[개념] 배열 맨앞에 요소 추가
+				(1) unshift() 
+				(2) 배열의 가장 앞에 새로운 요소를 추가한다.
+				(3) 추가하면 배열의 길이는(length)는 증가한다.
+				(4) 변경된 배열의 길이를 반환한다.
+		*/
+
+		let arr = ["미금", "정자", "수서"];
+		// 방법1) unshift() 메서드 이용해 추가
+		arr.unshift("양재");
+		// document.write(arr.unshift("양재") + "<br>");		// 4
+		document.write(arr + "<br>");							// 양재,미금,정자,수서
+		
+		// 방법2) 인덱스를 지정하여 추가
+		arr.push(0);
+		for(let i=arr.length-1; i>0; i--) {
+			arr[i] = arr[i - 1];
+		}
+		arr[0] = "당곡";
+		document.write(arr + "<br>");							// 당곡,양재,미금,정자,수서
+		
+	</script>
+
+</body>
+</html>

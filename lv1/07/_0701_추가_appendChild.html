@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--
+        [개념] appendChild vs append
+        (1) 공통점 : 부모 태그에 자식 태그를 추가하는 메서드
+        (2) 차이점
+            * append
+                한번에 여러 자식 태그를 추가할 수 있고,
+                문자열도 추가할 수 있다.
+    -->
+
+    <h4>과일 목록</h4>
+    <div id="list">
+        
+    </div>
+
+    <div id="text"></div>
+
+    
+
+    <script>
+        let parent = document.querySelector("#list");
+
+        // <ul></ul>
+        let ul = document.createElement("ul");
+        parent.appendChild(ul);
+
+        let li1 = document.createElement("li");
+        li1.innerText = "사과";
+        ul.appendChild(li1);
+        
+        let li2 = document.createElement("li");
+        li2.innerText = "바나나";
+        ul.appendChild(li2);
+        
+        let li3 = document.createElement("li");
+        li3.innerText = "딸기";
+        ul.appendChild(li3);
+
+        //---------------------------------------------
+        //  <div id="text"></div>
+        let text = document.querySelector("#text");
+
+        // 오류 발생
+        // text.appendChild("안녕하세요");
+
+        let textNode = document.createTextNode("안녕하세요");
+        text.appendChild(textNode);
+        
+    </script>
+</body>
+</html>

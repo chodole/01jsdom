@@ -1,0 +1,59 @@
+<script>
+
+    // 1. for 
+    console.log(">>> 1번");
+    for (let i = 0; i < 10; i++){
+        console.log(i); // 0~9까지 출력
+    }
+    console.log("---------------------------")
+
+    // 2. for in : json 출력 시 사용
+    console.log(">>> 2번");
+    let obj = { name : "홍길동", age : 20, gender : "남성"};
+    for (let key in obj){
+        console.log(`${key} : ${obj[key]}`);
+    }
+    console.log("---------------------------")
+
+    // 3. for of : 바로 값 출력
+    console.log(">>> 3번");
+    let arr = [10, 20, 30];
+    for (let item of arr){
+        console.log(item); // 10, 20, 30 출력
+    }
+    console.log("---------------------------")
+
+    // 4. 배열.forEach(value, index, array)
+    console.log(">>> 4번");
+    arr.forEach((value) => {
+        console.log(value);
+    });
+    arr.forEach((value, index) => {
+        console.log('Index: ' + index + ' Value: ' + value);
+    });
+    let arr2 = ["이민수", "김철수", "신정민", "유재석"];
+    arr2.forEach((value, index, array)=>{
+        console.log(value, index, array);  
+    })
+    console.log("---------------------------")
+
+    // 5-1. 배열.map( (value, index, array)=>{...반복 수행 코드...} )
+    console.log(">>> 5-1번");
+    let arr3 = [10, 20, 30, 40];
+    let map_reuslt = arr3.map((value, index, array)=>{
+        console.log(value); // 10, 20, 30, 40 출력
+        return value*10;    // 각 요소에 10을 곱한 값을 배열로 반환
+    })
+    console.log(map_reuslt);
+    console.log(arr3);      // 원본은 그대로 유지된다  
+    console.log("---------------------------")
+
+    // 5-2 배열.filter( (value, index, array)=>{...반복 수행 코드...} )
+    let filter_result = arr3.filter((value, index, array)=>{
+        console.log(value);     // 10, 20, 30, 40 출력
+        return value%2 == 0;    // value가 짝수인 값들을 배열로 반환
+        // true를 반환하면 값을 추가하고, false를 반환하면 버림
+    })
+    console.log(filter_result);
+
+</script>

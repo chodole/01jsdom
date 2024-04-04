@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1" onclick="btn1Function(this)">onclick의 this</button>
+    <button id="btn2">addEventListener의 this1</button>
+    <button id="btn3">addEventListener의 this2</button>
+
+    <script>
+        function btn1Function(obj){
+            alert(obj.innerText);
+        }
+
+        document.querySelector("#btn2").addEventListener("click",btn2Function);
+        function btn2Function(){
+            alert(this.innerText);
+        }
+
+        document.querySelector("#btn3").addEventListener("click",btn3Function);
+        function btn3Function(e){
+            console.log(this);
+            console.log(e.target);
+            alert(e.target.innerText);
+        }
+
+    </script>
+</body>
+</html>

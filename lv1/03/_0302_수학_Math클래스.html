@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math클래스</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+            [개념] Math 클래스
+        */
+        let num = 2.6234;
+
+        let maxNum = Math.max(10, 5, 8, 30),
+            minNum = Math.min(10, 5, 8, 30),
+            absNum = Math.abs(-3),          // 절대값
+            roundNum = Math.round(num),     // 반올림
+            floorNum = Math.floor(num),     // 내림
+            ceilNum = Math.ceil(num),       // 올림
+            randNum = Math.random(),        // 랜덤은 소수점으로 나오기 때문에 곱하기 숫자로 범위를 정함
+            piNum = Math.PI;
+
+        document.write(maxNum, "<br>");
+        document.write(minNum, "<br>");
+        document.write(absNum, "<br>");
+        document.write(roundNum, "<br>");
+        document.write(floorNum, "<br>");
+        document.write(ceilNum, "<br>");
+        document.write(randNum, "<br>");
+        document.write(piNum, "<br>");
+        document.write(piNum.toFixed(2), "<br>");
+
+    </script>
+    
+</body>
+</html>

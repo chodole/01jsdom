@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelectorAll()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.querySelectorAll("선택자") 메서드
+            (1) 해당 CSS 선택자와 일치하는 모든 요소를 
+                NodeList로 반환
+    -->
+ 
+    <p class="content">querySelectorAll() 메서드1</p>
+    <p class="content">querySelectorAll() 메서드2</p>
+
+    <script>
+        // 태그 선택
+        let list = document.querySelectorAll("p.content");
+       
+        for(let i=0; i<list.length; i++) {
+            // 텍스트 변경
+            list[i].innerText = "텍스트 변경";
+        }
+    </script>
+
+</body>
+</html>

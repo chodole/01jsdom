@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onkeyup</title>
+</head>
+<body>   
+    
+    <input type="text" id="myInput" placeholder="영어소문자를 입력하세요.">
+
+    <script>
+        let element =  document.querySelector("#myInput");
+        element.addEventListener("keyup", keyupFunction);
+
+        function keyupFunction() {
+            element.value = element.value.toUpperCase();
+        }
+
+    </script>
+
+</body>
+</html>

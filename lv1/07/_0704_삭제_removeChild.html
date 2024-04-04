@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        [개념] remove vs removeChild
+            (1) remove : 요소를 삭제
+            (2) removeChild : 부모에게서 자식 객체를 떼어내기(=삭제)
+    -->
+
+    <div id="target">
+        <p id="p1">첫번째 단락</p>
+        <p id="p2">두번째 단락</p>
+    </div>
+
+    <button onclick="removeFunction()">remove()</button>
+    <button onclick="removeChildFunction()">removeChild()</button>
+
+    <script>
+
+        function removeFunction(){
+            let parent = document.querySelector("#target");
+            parent.remove();
+        }
+
+        function removeChildFunction(){
+            let parent = document.querySelector("#target");
+            let child = document.querySelector("#p1");
+            let delNode = parent.removeChild(child);
+
+            console.log(delNode);
+        }
+
+    </script>
+</body>
+</html>

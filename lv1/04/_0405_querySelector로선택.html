@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.querySelector("선택자") 메서드
+            (1) 해당 CSS 선택자와 일치하는 첫 번째 요소를 반환
+            (2) 첫 번째뿐만 아니라 일치하는 모든 항목을 반환하려면 querySelectorAll()을 사용
+    -->
+ 
+    <h3 id="main">학습 과목</h3>
+    <ul>
+        <li class="subject">HTML</li>
+        <li class="subject">CSS</li>
+        <li class="subject">JavaScript</li>
+    </ul>
+
+    <script>
+        // tag명으로 선택
+        let element = document.querySelector("h3");
+        console.log(element.innerText);
+        
+        // id명으로 선택
+        element = document.querySelector("#main");
+        console.log(element.innerText);
+        
+        // class명으로 선택 : 첫 번째 요소를 반환
+        element = document.querySelector(".subject");
+        console.log(element.innerText);     // HTML
+
+        // 내용 변경
+        element.innerText = "Hypertext Markup Language";
+    </script>
+
+</body>
+</html>

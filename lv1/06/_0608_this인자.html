@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oninput</title>
+    <style>
+        body{
+            min-width: 100vh;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body id="main">
+
+    <h3 id="result" onclick="changeRange('red')">클릭하면 글자 색상이 바뀝니다.</h3>
+    <h3 id="test" onclick="changeColor(this, 'blue')">클릭하면 글자 색상이 바뀝니다.</h3>
+
+    <script>
+        let main = document.querySelector("#main");
+        main.addEventListener("click",changeBlack);
+
+        function changeRange(value) {
+            document.querySelector("#result").style.color = value;
+        }
+
+        // this를 인자로 전달하면, querySelector를 통해 태그를 선택할 필요가 없다.
+        function changeColor(element, color) {
+            // element = document.querySelector("#test");
+            element.style.color = color;
+        }
+
+        function changeBlack(e){
+            let target = e.target;
+            console.log(target);
+            console.log(e.currentTarget.querySelector("#test"));
+
+            if(target == e.currentTarget.querySelector("#test")) return;
+            if(target == e.currentTarget.querySelector("#result")) return;
+            
+            e.currentTarget.querySelector("#test").style.color = "black";
+            e.currentTarget.querySelector("#result").style.color = "black";
+        }
+    </script>
+
+</body>
+</html>
+​

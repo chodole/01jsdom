@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="msg">This is a paragraph.</p>
+    <input type="button" onclick="chageStyle()" value="눌러보세요">
+
+    <script>
+        function chageStyle(){
+            let msg = document.getElementById("msg");
+            msg.style.color = "red";
+            msg.style.fontFamily = "Century Schoolbook";
+            msg.style.fontStyle = "italic";
+        }
+    </script>
+    
+</body>
+</html>

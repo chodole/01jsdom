@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sub{
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">간식 종류</h1>
+    <table border="1">
+        <tr>
+            <td rowspan="5">
+                <img src="images/snack1.jpg" id="main" width="200px" height="200px">
+            </td>
+            <td>상품명 : 삼립 미니꿀약과</td>
+        </tr>
+        <tr>
+            <td>판매가 : 20,000원 </td>
+        </tr>
+        <tr>
+            <td>배송비 : 3,000원 </td>
+        </tr>
+        <tr>
+            <td>
+                수량 : <input type="number" value="1" min="1" max="5">
+            </td>
+        </tr>
+        <tr>
+            <td><button>장바구니 담기</button></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="images/snack1.jpg" class="sub">
+                <img src="images/snack2.jpg" class="sub">
+                <img src="images/snack3.jpg" class="sub">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        let mainImg = document.querySelector("#main");
+        let subImgs = document.querySelectorAll(".sub");
+
+        for(let i=0;i<subImgs.length;i++){
+            subImgs[i].addEventListener("click",changeImg);
+        }
+
+        function changeImg(){
+            let clickImg = this.src;
+            console.log(this);
+
+            mainImg.src = clickImg;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 인덱스 - indexOf()</title>
+</head>
+<body>
+    
+    <script>
+
+        /*
+            [개념] 문자열 인덱스
+                (1) indexOf("문자열")
+                (2) 인자로 전달된 문자열과 일치하는 첫 번째 인덱스를 반환한다.
+                (3) 일치하는 값이 없으면 -1을 반환한다.
+        */
+
+        let text = "Hello, JavaScript!";
+
+        let word = "j";
+        let index = text.indexOf(word);
+        
+        // word = "a";
+        // index = text.indexOf(word);
+
+        if(index == -1) {
+            document.write("해당 문자는 존재하지 않습니다.");
+        } else {
+            document.write(`${word}의 위치는 ${index}번째 입니다.`);
+        }
+
+    </script>
+
+</body>
+</html>

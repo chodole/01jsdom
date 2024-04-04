@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 공백제거 - 정규식</title>
+</head>
+<body>
+    
+    <!--
+        https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_Expressions
+    -->
+
+    <script>
+
+        // \d : 숫자를 의미
+        // {} : 중괄호 안의 숫자는 갯수를 의미
+        // 즉, 숫자3개 - 숫자4개 - 숫자4개
+        let regex = /\d{3}-\d{4}-\d{4}/; 
+        document.write(regex.test("010-1234-5678"), "<br>");        // true
+        document.write(regex.test("010-12-34"), "<br>");            // false
+
+        // 전체 공백제거는 정규식을 통해서만이 가능하다.
+        let text = "   Hello Java  script  ";
+        console.log("전체 공백 제거:" + text.replace(/(\s*)/g, ""));
+        console.log("앞 공백 제거:" + text.replace(/^\s*/, ""));
+        console.log("뒷 공백 제거:" + text.replace(/\s*$/, ""));
+
+    </script>
+
+</body>
+</html>

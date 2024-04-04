@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .replyList, .removeList {
+            border: 1px solid black;
+            width: 500px;
+        }
+        .removeList {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>
+                댓글<input id="reply" type="text">
+                <button onclick="addReply()">등록</button>
+            </td>
+        </tr>
+    </table>
+
+    <table id="list" border="1"></table>
+    
+    <script>
+        function addReply(){
+            let list = document.querySelector("#list");
+            let reply = document.querySelector("#reply");
+            if(reply.value == ""){
+                alert("댓글을 입력해주세요");
+                return;
+            }
+
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            td.setAttribute("class","replyList");
+            td.innerText = reply.value;
+            tr.append(td);
+
+            td = document.createElement("td");
+            let delSpan = document.createElement("span");
+            delSpan.innerText = "X";
+            delSpan.setAttribute("class","removeList");
+            delSpan.addEventListener("click",delReply);
+            td.append(delSpan);
+
+            tr.append(td);
+            list.append(tr);
+
+            reply.value = "";
+            reply.focus();
+        }
+
+        function delReply(){
+            let list = document.querySelector("#list");
+            let removeList = document.querySelector(".removeList");
+            for(let i =0;i<removeList.length;i++){
+                if(this == removeList[i]){
+                    list.children[i].remove();
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

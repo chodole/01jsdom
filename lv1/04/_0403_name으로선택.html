@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByName()</title>
+</head>
+<body>
+
+    <!--
+        [개념] document.getElementsByName("name속성값") 메서드
+            (1) 해당 name 속성값을 가지는 모든 요소를 선택해 NodeList로 반환
+            (2) NodeList 란
+                    1) 배열과 같은 노드 모음
+                    2) 인덱스(0부터 시작)로 접근 가능
+                    3) length 속성은 노드의 수를 반환
+    -->
+
+    <h3 id="target">선택 가능한 과목 수 : </h3>
+
+    HTML<input type="checkbox" name="subject" value="html">
+
+    CSS<input type="checkbox" name="subject" value="css">
+    
+    JavaScript<input type="checkbox" name="subject" value="javascript">
+
+    <script>
+        // 태그 선택
+        let list = document.getElementsByName("subject");
+        console.log(list);
+        let size = list.length;
+        console.log(size);
+        
+        // 내용 변경
+        let element = document.getElementById("target");
+        //         "선택 가능한 과목 수 : " + "3"
+        let text = element.innerText     + size;
+        element.innerText = text;
+    </script>
+
+</body>
+</html>

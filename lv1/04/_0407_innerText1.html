@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerText</title>
+</head>
+<body>
+
+    <!--
+        [개념] 
+            (1) innerText : 사용자에게 보여지는 텍스트만 가져옴
+            (2) innerHTML : html 전체를 다 가져옴
+            (3) textContent : 숨겨진 텍스트까지 포함해서 텍스트만 모두 다 가져옴
+            (4) value : <select>, <input>태그의 값을 가져옴
+    -->
+ 
+    <p id="target">텍스트 지우기</p>
+
+    <script>
+        let element = document.querySelector("#target");
+        element.innerText = "";
+    </script>
+    
+</body>
+</html>

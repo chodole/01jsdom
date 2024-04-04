@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 3초 뒤에 무언가를 실행시키고 싶을 때 -->
+    <h1>일정 시간 간격으로 한번만 값 증감시키기</h1>
+    <p> 콘솔 패널을 열어 확인하세요.</p>
+
+    <script>
+        let num = 0;
+        function addNumber(){
+            num += 1;
+            console.log("num: " + num);
+        }
+    
+        let auto = setTimeout(addNumber, 3000);
+    </script>
+</body>
+</html>

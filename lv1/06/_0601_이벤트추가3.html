@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick</title>
+</head>
+<body>
+    <!--
+        [개념] 이벤트 추가하기
+            (1) HTML 속성 : onclick="함수명()"
+            (2) DOM 프로퍼티 : elem.onclick = function
+            (3) 메서드 : elem.addEventListener(이벤트명, 실행할이벤트함수)
+
+        * HTML속성과 DOM 프로퍼티를 이용한 이벤트 핸들러 방식은
+        하나의 이벤트에 여러개의 핸들러(=함수)를 할당할 수 없다는 문제가 있다.
+        
+        * 반면 addEventListener 메서드는 여러개의 핸들러를 할당할 수 있어
+        addEventListener 사용을 권장한다.
+    -->
+
+    <button id="btn" onclick="alert('첫번째')">버튼</button>
+
+    <script>
+        let btn = document.querySelector("#btn");
+        btn.onclick = function() {
+            alert("두번째");        // 마지막 것만 실행됨
+        }
+    </script>
+
+</body>
+</html>
+​

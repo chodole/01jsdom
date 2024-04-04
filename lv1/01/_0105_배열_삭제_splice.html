@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 삭제 - splice()</title>
+</head>
+<body>
+
+	<script>
+		
+		/*
+			[개념] 배열 삭제
+				1) splice(시작위치, 삭제할 요소의 개수)	: 시작위치부터 개수만큼 삭제
+				2) splice(시작위치) : 시작위치부터 이후 모두 삭제
+		*/
+
+		// 삭제
+		let arr = ["미금", "정자", "수서", "양재", "당곡"];
+		document.write(arr + "<br>");	
+
+		arr.splice(3, 2);							// 3번부터 2개 삭제
+		document.write(arr + "<br>");				// 미금,정자,수서
+
+		// 가장 많이 이용하는 것은 값 1개 삭제이며, 
+		// 아래와 같은 형태로 사용한다.
+		// [문제] 수서만 삭제하시오.
+		let index = arr.indexOf("수서");
+        if(index != -1) {
+            arr.splice(index, 1);								
+            document.write(arr + "<br>");				// 미금,정자
+        } else {
+            document.write("해당 값은 존재하지 않습니다.")
+        }
+
+	</script>
+
+</body>
+</html>

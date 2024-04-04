@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 합치기 - concat()</title>
+</head>
+<body>
+    
+    <script>
+
+        /*
+            [개념] 문자열 합치기
+                (1) concat("새로운 문자")
+                (2) 문자열에 새로운 문자열을 결합해
+                    새로운 문자열을 반환한다.
+        */
+
+        let str1 = "Hello";
+        let str2 = "Javascript";
+
+        let rs1 = str1.concat(str2);
+        document.write(rs1 + "<br>");
+        
+        let rs2 = str1.concat(" ", str2);
+        document.write(rs2);
+
+    </script>
+    
+</body>
+</html>

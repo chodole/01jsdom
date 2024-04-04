@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열 공백제거 - trim()</title>
+</head>
+<body>
+    
+    <script>
+
+        /*
+            [개념] 문자열 공백제거
+                (1) trim()
+                (2) 분자열에 새로운 문자열을 결합해 새로운 문자열을 반환한다.
+        */
+
+        // 전체 공백 제거는 자바스크립트의 정규표현식을 이용을 해야 한다.
+        let text = "   Hello Javascript  ";
+        console.log(`[${text}]`);
+
+        let rs1 = text.trim();
+        console.log(`[${rs1}]`);
+        
+    </script>
+    
+</body>
+</html>

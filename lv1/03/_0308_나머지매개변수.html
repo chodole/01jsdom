@@ -1,0 +1,12 @@
+<script>
+        
+    // 나머지 매개변수, 전개 구문
+    function add(...nums){
+        let result = 0;
+        nums.forEach((num) => (result += num));
+        console.log(result);
+    }
+    add(1, 2, 3);
+    add(1, 2, 3, 4, 5, 6);
+
+</script>

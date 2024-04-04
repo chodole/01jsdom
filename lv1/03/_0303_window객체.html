@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window객체</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+            [개념] window 객체의 다양한 메서드
+                (1) alert() : 경고 창을 나타낼 때 사용한다.
+                (2) prompt() : 질의응답 창을 나타낼 때 사용한다.
+                (3) confirm() : 확인/취소 창을 나타낼 때 사용한다.
+        */
+
+        while(true) {
+            let age = prompt("당신의 연령은?", "0");
+    
+            // isNaN함수 : 문자이면 true를 반환한다.
+            if(isNaN(age) == false) {
+                document.write(`당신의 나이는 ${age}세 이군요!`);
+                break;
+            } else {
+                alert("잘못 입력했습니다.");
+
+                let answer = confirm("다시 입력하시겠습니까?");
+                if(answer == false) {
+                    break;
+                } 
+            }
+        }
+    </script>
+    
+</body>
+</html>

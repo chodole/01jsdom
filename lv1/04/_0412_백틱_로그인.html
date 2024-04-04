@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--
+        [개념] 백틱( ` ) 
+            문자열 내부에서 ${} 를 사용해 변수를 사용할 수 있다.
+    -->
+
+    <span id="msg">
+    </span>
+
+    <script>
+        let tag = "";
+        tag += `     
+        <h3>회원가입<h3>
+            <table border="1">
+                <tr>
+                    <td>아이디</td>
+                    <td><input id="data-id"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input id="data-pw"></td;
+                </tr>
+                <tr>
+                    <td><button id="btn-joinPro">회원가입</button></td>
+                </tr>
+            </table>
+
+            <br>
+            <button id="btn-mainPage">메인메뉴</button>
+
+        `;
+
+        document.querySelector("#msg").innerHTML = tag;
+    </script>   
+
+</body>
+</html>
+​

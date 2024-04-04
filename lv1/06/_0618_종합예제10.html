@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider {
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+        .moveIcon {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            background-color: white;
+            border-style: none;
+            cursor: pointer;
+        }
+        .product {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <table id="slider" border="1">
+        <tr>
+            <td>
+                <button class="moveIcon" onclick="left()"><</button>
+            </td>
+            <td>
+                <img class="product" src="images/1.png">
+            </td>
+            <td>
+                <img class="product" src="images/2.png">
+            </td>
+            <td>
+                <img class="product" src="images/3.png">
+            </td>
+            <td>
+                <button class="moveIcon" onclick="rigth()">></button>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        let list=["1.png","2.png","3.png","4.png","5.png"];
+
+        function left(){
+            let temp = list[list.length-1];
+            for(let i=list.length-1; i>0;i--){
+                list[i] = list[i-1];
+            }
+            list[0] = temp;
+
+            let product = document.querySelectorAll(".product");
+            for(let i=0;i<product.length;i++){
+                product[i].src = "images/"+list[i];
+            }
+        }
+
+        function rigth(){
+            let temp = list[0];
+            for(let i=0;i<list.length;i++){
+                list[i] = list[i+1];
+            }
+            list[list.length-1] = temp;
+
+            let product = document.querySelectorAll(".product");
+            for(let i=0;i<product.length;i++){
+                product[i].src = "images/"+list[i];
+            }
+        }
+    </script>
+    
+</body>
+</html>

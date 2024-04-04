@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--
+        [개념] 
+            (1) innerText : 사용자에게 보여지는 텍스트만 가져옴
+            (2) innerHTML : html 전체를 다 가져옴
+            (3) textContent : 숨겨진 텍스트까지 포함해서 텍스트만 모두 다 가져옴
+            (4) value : <select>, <input>태그의 값을 가져옴
+    -->
+
+    <input type="text" id="content" value="안녕하세요">
+
+    <select name="subject">
+        <option value="kor">국어</option>
+        <option value="math" selected>수학</option>
+        <option value="eng">영어</option>
+    </select>
+
+    <script>
+        document.querySelector("#content").value = "반가워요";
+
+        console.log(document.querySelector("select[name='subject']").value);
+    </script>
+
+    
+
+
+
+</body>
+</html>

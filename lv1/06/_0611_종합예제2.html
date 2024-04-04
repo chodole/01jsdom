@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="images/light_off.jpg" id="light" width="300px">
+
+    <script>
+        let light = document.querySelector("#light");
+        console.log(light);
+
+        light.addEventListener("mouseover",changeOn);
+        light.addEventListener("mouseout",changeOff);
+
+        function changeOn(){
+            light.src = "images/light_on.jpg";
+        }
+
+        function changeOff(){
+            light.src = "images/light_off.jpg";
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector()</title>
+</head>
+<body>
+ 
+    <div>
+        <!-- <p style="border: 1px solid black;">div안의 p태그</p> -->
+        <p>div안의 p태그</p>
+    </div>
+    <p>p태그</p>
+
+    <script>
+       let element = document.querySelector("div > p");
+
+       // 테두리 변경
+       element.style.border = "1px solid black";
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3 class="hello" onclick="helloMsg(this)">안녕1</h3>
+    <h3 class="hello" onclick="helloMsg(this)">안녕2</h3>
+
+    <hr>
+
+    <h3 class="bye">잘가1</h3>
+    <h3 class="bye">잘가2</h3>
+
+    <script>
+        function helloMsg(element){
+            alert(element.innerText);
+        }
+
+        let list = document.querySelectorAll(".bye");
+        for(let i=0;i<list.length;i++){
+            list[i].addEventListener("click",byeMsg);
+        }
+
+        function byeMsg(){
+            alert(this.innerText); 
+        }
+    </script>
+    
+</body>
+</html>
