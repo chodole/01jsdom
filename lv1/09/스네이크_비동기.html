@@ -57,18 +57,48 @@
         let wall = false;
         let score = 0;
 
-        makeSnake();
-
         let autoMove = null;
         let scoreCheck = null;
+        let frameCount = 0;
+        
+        makeSnake();
+
+        // function AutoMove(text){
+        //     if(autoMove != null){
+        //         clearInterval(autoMove);
+        //     }else {
+        //         scoreCheck = setInterval(scoreCount,1000);
+        //     }
+        //     autoMove = setInterval(function(){move(text)},60);
+        // }
+
+        function step(text){
+            //벽일 시 애니메이션 취소
+            if(wall){
+                cancelAnimationFrame(autoMove);
+            }
+
+            //프레임이 5가 되기전까지 재귀함수로 호출
+            frameCount++;
+            if(frameCount < 5){
+                autoMove = requestAnimationFrame(function(){step(text)});
+                return;
+            }
+
+            //프레임이 5가 되면 프레임을 초기화하고 애니메이션이 움직임
+            frameCount = 0;
+            move(text);
+            autoMove = requestAnimationFrame(function(){step(text)});
+        }
 
         function AutoMove(text){
             if(autoMove != null){
-                clearInterval(autoMove);
+                //text가 겹치지 않도록 미리 애니메이션 리셋
+                cancelAnimationFrame(autoMove);
             }else {
                 scoreCheck = setInterval(scoreCount,1000);
             }
-            autoMove = setInterval(function(){move(text)},60);
+            autoMove = requestAnimationFrame(function(){step(text)});
         }
 
         function scoreCount() {
@@ -92,13 +122,12 @@
             }
 
             if(wall) {
-                clearInterval(autoMove);
+                alert("벽에 부딪혔습니다 \n점수 : "+score+" 점");
+                cancelAnimationFrame(autoMove);
                 
                 head = [0,0];
                 taleList = [[0,1],[0,2],[0,3]];
                 taleMove = ["left","left","left"];
-                
-                alert("벽에 부딪혔습니다 \n점수 : "+score+" 점");
                 score = -1;
 
                 map.innerHTML = "";
@@ -131,34 +160,32 @@
         }
 
         function moveCheck(text){
+            let firstCheck = null;
+            let lastCheck = null;
+
             if(text == "right"){
-                let lastCheck = head[1]+1 == taleList[2][1] && head[0] == taleList[2][0];
-                if(head[1]+1 == taleList[0][1] || lastCheck){
-                    return true;
-                }else{
-                    return false;
-                }
+                firstCheck = head[1]+1 == taleList[0][1]; 
+                lastCheck = head[1]+1 == taleList[2][1] && head[0] == taleList[2][0];
+
+                return (firstCheck || lastCheck) ? true : false;
+
             }else if(text == "left"){
-                let lastCheck = head[1]-1 == taleList[2][1] && head[0] == taleList[2][0];
-                if(head[1]-1 == taleList[0][1] || lastCheck){
-                    return true;
-                }else{
-                    return false;
-                }
+                firstCheck = head[1]-1 == taleList[0][1];
+                lastCheck = head[1]-1 == taleList[2][1] && head[0] == taleList[2][0];
+
+                return (firstCheck || lastCheck) ? true : false;
+
             }else if(text == "up"){
-                let lastCheck = head[0]-1 == taleList[2][0] && head[1] == taleList[2][1];
-                if(head[0]-1 == taleList[0][0] || lastCheck){
-                    return true;
-                }else{
-                    return false;
-                }
+                firstCheck = head[0]-1 == taleList[0][0];
+                lastCheck = head[0]-1 == taleList[2][0] && head[1] == taleList[2][1];
+
+                return (firstCheck || lastCheck) ? true : false;
+
             }else if(text == "down"){
-                let lastCheck = head[0]+1 == taleList[2][0] && head[1] == taleList[2][1];
-                if(head[0]+1 == taleList[0][0] || lastCheck){
-                    return true;
-                }else{
-                    return false;
-                }
+                firstCheck = head[0]+1 == taleList[0][0];
+                lastCheck = head[0]+1 == taleList[2][0] && head[1] == taleList[2][1];
+
+                return (firstCheck || lastCheck) ? true : false;
             }
         }
 
@@ -244,12 +271,12 @@
 
         function snakeTail(e,i,j){
             if(i==head[0] && j==head[1]){
-                e.style.backgroundColor = "blue";
+                e.style.backgroundColor = "#117A65";
             }
 
             for(let k=0;k<taleList.length;k++){
                 if(i==taleList[k][0] && j==taleList[k][1]){
-                    e.style.backgroundColor="tomato";
+                    e.style.backgroundColor="#16A085";
                 }
             }
         }

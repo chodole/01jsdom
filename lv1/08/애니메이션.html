@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id ="sec">0초</div>
+
+    <script>
+        let animStep = null;
+        let frameCount = 0;
+
+        function step(timestamp){
+            //프레임이 30 도달하기 전까지 재귀함수 호출
+            frameCount++;
+            if(frameCount < 30){
+                animStep = requestAnimationFrame(step);
+                return;
+            }
+
+            //도달하면 프레임을 초기화 하고 움직일 애니메이션 지정 후 재귀함수 호출
+            frameCount = 0;
+
+            let div = document.querySelector("#sec");
+            div.innerHTML = timestamp+"초";
+
+            animStep = requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+
+    </script>
+</body>
+</html>
