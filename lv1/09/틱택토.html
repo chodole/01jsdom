@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,tr,td{
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        td{
+            text-align: center;
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <script>
+
+        let size = 3;
+        let $body = document.body;
+        let $tdList = [];
+        let dataList = [];
+        let win = null;
+        let turn = true;
+        
+        function init(){
+            let $table = document.createElement("table");
+            for(let i=0;i<size;i++){
+                let temp = [0,0,0];
+                dataList.push(temp);
+            }
+
+            for(let i=0;i<size;i++){
+                let $tr = document.createElement("tr");
+                let $temp = [];
+
+                for(let j=0;j<size;j++){
+                    let $td = document.createElement("td");
+                    $td.addEventListener("click",clickEvent);
+                    $temp.push($td);
+                    $tr.append($td);
+                }
+                $tdList.push($temp);
+                $table.append($tr);
+            }
+            $body.append($table);
+        }
+
+        function clickEvent(){
+            for(let i=0;i<size;i++){
+                for(let j=0;j<size;j++){
+                    setTimeout(winerCheck,300);
+                    if(this == $tdList[i][j]){
+                        if(this.innerText == ""){
+                            if(turn){
+                                this.innerText = "O";
+                                dataList[i][j] = 1;
+                            }else{
+                                this.innerText = "X";
+                                dataList[i][j] = 2;
+                            }
+                            turn = !turn;
+                        }
+                    } 
+                }
+            }
+        }
+
+        function winerCheck(){
+            console.log(win);
+            if(win != null){
+                console.log("check");
+                winnerAlert();
+            }
+            //가로
+            for(let i=0;i<size;i++){
+                if(dataList[i][0]==1 && dataList[i][1] == 1 && dataList[i][2] == 1) {
+                    win = 1;
+                }
+                if(dataList[i][0]==2 && dataList[i][1] == 2 && dataList[i][2] == 2){
+                    win = 2;
+                }
+            }
+
+            //세로
+            for(let i=0;i<size;i++){
+                if(dataList[0][i] == 1 && dataList[1][i] == 1 && dataList[2][i] == 1){
+                    win = 1;
+                } 
+                if(dataList[0][i] == 2 && dataList[1][i] == 2 && dataList[2][i] == 2){
+                    win = 2;
+                }
+            }
+
+            if(dataList[0][0] == 1 && dataList[1][1] == 1 && dataList[2][2]==1){
+                win = 1;
+            }
+            if(dataList[0][0] == 2 && dataList[1][1] == 2 && dataList[2][2]==2){
+                win = 2;
+            }
+
+            if(dataList[0][2]==1 && dataList[1][1]==1 && dataList[2][0] ==1){
+                win=1;
+            }
+            if(dataList[0][2]==2 && dataList[1][1]==2 && dataList[2][0] ==2){
+                win=2;
+            }
+
+            let result = false;
+            for(let i=0;i<size;i++){
+                for(let j=0;j<size;j++){
+                    if(dataList[i][j]==0){
+                        result = true;
+                        break;
+                    }
+                }
+            }
+
+            if(result ==false){
+                win = 3;
+            }
+
+            
+        }
+
+        function winnerAlert(){
+            alert("승자는 "+win);
+            $tdList = [];
+            dataList = [];
+            win = null;
+            turn = true;
+
+            $body.innerHTML = "";
+            init();
+        }
+
+    </script>
+    
+</body>
+</html>
