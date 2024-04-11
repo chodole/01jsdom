@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #header{
+            margin: 0 auto;
+            display: table;
+        }
+        #target{
+            margin: 0 auto;
+            display: table;
+        }
+        td{
+            border: 1px solid black;
+            width: 60px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <div id="header">
+        <table>
+            <tr>
+                <td colspan="6">
+                    <span id="today"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="year"></span>년</td>
+                <td><span id="month"></span>월</td>
+                <td><button onclick="minusClick()">△</button></td>
+                <td><button onclick="plusClick()">▽</button></td>
+            </tr>
+        </table>
+    </div>
+    <div id="target"></div>
+
+    <script>
+        /*
+            [작년까지의 윤년 공식]
+            1. 4의 배수이면 +1
+            2. 100의 배수이면 -1
+            3. 400의 배수이면 +1
+
+            [올해 윤년 공식]
+            1. 400의 배수이면 +1
+            2. 1번의 제외한 수 중에
+               100의 배수가 아니면서 4의 배수이면 +1
+            
+            [달력 계산]
+            0. 1년 1월 1일은 월요일이다.
+            1. 작년까지 day를 구한다.
+            2. 작년까지의 윤년을 추가한다.
+            3. 올해 지난달까지의 day를 구한다.
+            4. 올해가 윤년인지 판단해 2월 달력을 변경한다.
+            5. 이번달 표시를 위해 1을 추가로 더한다.
+        */
+
+        let today = new Date();
+        let $target = document.querySelector("#target");
+        let $table = null;
+        let dayList = ["일","월","화","수","목","금","토"];
+
+        function init(){
+            let thisYear = today.getFullYear();
+            let thisMonth = today.getMonth();
+            let date = today.getDate();
+            let day = today.getDay();
+            document.querySelector("#year").innerText = thisYear;
+            document.querySelector("#month").innerText = thisMonth +1;
+
+            document.querySelector("#today").innerText = thisYear + "년 "
+            +(thisMonth+1)+"월 "
+            +date +"일 "
+            +dayList[day]+"요일";
+
+            setDate(thisYear, thisMonth);
+
+            for(let i=0;i<7;i++){
+                for(let j=0;j<7;j++){
+                    if(date == $table.children[i].children[j].innerText){
+                        $table.children[i].children[j].style.backgroundColor = "skyblue";
+                    }
+                }
+            }
+
+        }
+
+        function setDate(thisYear,thisMonth){
+            if($table != null){
+                $target.removeChild($table);
+            }
+
+            $table = document.createElement("table");
+            for(let i=0;i<7;i++){
+                let $tr = document.createElement("tr");
+                for(let j=0;j<7;j++){
+                    let $td = document.createElement("td");
+                    $tr.append($td);
+                }
+                $table.append($tr);
+            }
+            $target.append($table);
+
+            let total = 0;
+            let lastYear = thisYear -1;
+
+            total += lastYear * 365;
+
+            total += parseInt(lastYear / 400);
+            total -= parseInt(lastYear / 100);
+            total += parseInt(lastYear/4);
+
+            let monthList = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+            if(thisYear % 400 == 0){
+                monthList = [31,29,31,30,31,30,31,31,30,31,30,31];
+            }else if(thisYear%100 != 0 && thisYear % 4 == 0){
+                monthList = [31,29,31,30,31,30,31,31,30,31,30,31];
+            }
+
+            for(let i=0;i<thisMonth;i++){
+                total+=monthList[i];
+            }
+
+            total+=1;
+
+            for(let i=0;i<dayList.length;i++){
+                $table.children[0].children[i].innerText = dayList[i];
+            }
+
+            let dayIndex = total%7;
+            console.log("시작날짜 =",dayIndex);
+
+            let row = 1;
+            for(let i=0;i<monthList[thisMonth];i++){
+                let index = (i+dayIndex) % 7;
+                $table.children[row].children[index].innerText = i+1;
+                if(index == 6){
+                    row += 1;
+                }
+            }
+        }
+
+        function minusClick(){
+            let $thisYear = document.querySelector("#year");
+            let $thisMonth = document.querySelector("#month");
+
+            let thisYear =Number($thisYear.innerText);
+            let thisMonth = Number($thisMonth.innerText)-1;
+
+            if(thisMonth == 0){
+                thisYear -=1;
+                thisMonth = 12;
+
+                $thisYear.innerText = thisYear;
+                $thisMonth.innerText = thisMonth;
+            }else{
+                $thisMonth.innerText = thisMonth;
+            }
+
+            setDate(thisYear, thisMonth-1);
+        }
+
+        function plusClick(){
+            let $thisYear = document.querySelector("#year");
+            let $thisMonth = document.querySelector("#month");
+
+            let thisYear = Number($thisYear.innerText);
+            let thisMonth = Number($thisMonth.innerText)+1;
+
+            if(thisMonth ==13){
+                thisYear+=1;
+                thisMonth = 1;
+
+                $thisYear.innerText = thisYear;
+                $thisMonth.innerText = thisMonth;
+            }else{
+                $thisMonth.innerText = thisMonth;
+            }
+
+            setDate(thisYear,thisMonth-1);
+        }
+    </script>
+</body>
+</html>

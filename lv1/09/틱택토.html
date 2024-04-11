@@ -5,23 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table,tr,td{
-            border-collapse: collapse;
-            margin: 0 auto;
+        #header {
+            /* h3 가로 중앙 정렬 */
+            text-align: center;
         }
-        td{
+        table, tr, td {
+            border-collapse: collapse;
+            /* 테이블 가로 중앙 정렬 */
+            margin: auto;
+        }
+        td {
             text-align: center;
             border: 1px solid black;
             width: 50px;
             height: 50px;
+
+            cursor: pointer;
+        }
+        .winner {
+            color: red;
+        }
+        #footer {
+            text-align: center;
         }
     </style>
 </head>
 <body onload="init()">
+    <div id = "header">
+        <h3>Tic Tac Toe Game</h3>
+    </div>
+    <div id="center"></div>
+    <div id="footer"></div>
+
     <script>
 
         let size = 3;
-        let $body = document.body;
+        let $center = document.querySelector("#center");
         let $tdList = [];
         let dataList = [];
         let win = null;
@@ -47,13 +66,12 @@
                 $tdList.push($temp);
                 $table.append($tr);
             }
-            $body.append($table);
+            $center.append($table);
         }
 
         function clickEvent(){
             for(let i=0;i<size;i++){
                 for(let j=0;j<size;j++){
-                    setTimeout(winerCheck,300);
                     if(this == $tdList[i][j]){
                         if(this.innerText == ""){
                             if(turn){
@@ -68,14 +86,10 @@
                     } 
                 }
             }
+            winerCheck();
         }
 
         function winerCheck(){
-            console.log(win);
-            if(win != null){
-                console.log("check");
-                winnerAlert();
-            }
             //가로
             for(let i=0;i<size;i++){
                 if(dataList[i][0]==1 && dataList[i][1] == 1 && dataList[i][2] == 1) {
@@ -124,18 +138,44 @@
                 win = 3;
             }
 
-            
+            winnerAlert();
+        }
+        
+        function removeEvent(){
+            for(let i=0;i<size;i++){
+                for(let j=0;j<size;j++){
+                    $tdList[i][j].removeEventListener("click",clickEvent);
+                    $tdList[i][j].style.cursor="auto";
+                }
+            }
         }
 
         function winnerAlert(){
-            alert("승자는 "+win);
-            $tdList = [];
-            dataList = [];
-            win = null;
-            turn = true;
+            let $footer = document.querySelector("#footer");
+            let $msg = document.createElement("h6");
+            if(win==1 || win==2 || win==3){
+                if(win==1){
+                    $msg.innerHTML ="Player <span class='winner'>O</span> 승리!";
+                }else if(win==2){
+                    $msg.innerHTML ="Player <span class='winner'>X</span> 승리!";
+                }else if(win==3){
+                    $msg.innerHTML ="Player <span class='winner'>무승부</span>";
+                }
+                $footer.append($msg);
 
-            $body.innerHTML = "";
-            init();
+                removeEvent();
+
+                let $replayBtn = document.createElement("button");
+                $replayBtn.id = "replay";
+                $replayBtn.innerText = "재시작";
+                $replayBtn.addEventListener("click",replay);
+
+                $footer.append($replayBtn);
+            }
+        }
+
+        function replay(){
+            location.href = "틱택토.html";
         }
 
     </script>

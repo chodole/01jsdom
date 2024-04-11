@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #timer { text-align: center; }
+        #header { text-align: center; }
+        #footer { text-align: center; }
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+            margin: auto;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 3px solid white;
+            text-align: center;
+            color: brown;
+            font-size: 20px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body onload="init()">
+
+    <div id="timer">0</div>
+
+    <div id="header">
+        <h3>Speed Game</h3>
+        <button onclick="hintClick()">힌트</button>
+        <span id="nextNum">1</span>
+    </div>
+
+    <div id="center"></div>
+    
+    <div id="footer">
+        <button onclick="replayClick()">Replay</button>
+    </div>
+    
+    <script>
+        let gameNum = 1;        // 추가된 변수
+        let time = 0;    
+        let timeId = null;       
+
+        let size = 3;
+        let frontList = [];
+        let backList = [];
+        let $center = document.querySelector("#center");
+        let $table = document.createElement("table");
+        let $tdList = [];
+
+        function init() {
+            let num = 1;
+            for(let i=0; i<size; i++) {
+                let frontTemp = [];
+                let backTemp = [];
+                for(let j=0; j<size; j++) {
+                    frontTemp.push(num);
+                    backTemp.push(num + size*size);
+
+                    num += 1;
+                }
+
+                frontList.push(frontTemp);
+                backList.push(backTemp);
+            }
+
+            // 셔플(shuffle)
+            /*
+            for(let i=0; i<100; i++) {
+                let y = Math.floor(Math.random() * size);
+                let x = Math.floor(Math.random() * size);
+
+                let temp = frontList[0][0];
+                frontList[0][0] = frontList[y][x];
+                frontList[y][x] = temp;
+
+                y = Math.floor(Math.random() * size);
+                x = Math.floor(Math.random() * size);
+
+                temp = backList[0][0];
+                backList[0][0] = backList[y][x];
+                backList[y][x] = temp;
+            }
+            */
+
+            console.log("frontList = " + frontList);
+            console.log("backList = " + backList);
+
+            for(let i=0; i<size; i++) {
+                let $tr = document.createElement("tr");
+                
+                let $tempTdList = [];
+                for(let j=0; j<size; j++) {
+                    let $td = document.createElement("td");
+                    $td.addEventListener("click", clickEvent);
+                    $td.innerText = frontList[i][j];
+                    $td.style.backgroundColor = "coral";
+                    
+                    $tr.append($td);
+                    $tempTdList.push($td);
+                }
+                
+                $tdList.push($tempTdList);
+                $table.append($tr);
+            }
+            $center.append($table);
+        }
+
+        function setTimer() {
+            time += 1;
+            document.querySelector("#timer").innerText = time;
+        }
+
+        function clickEvent() {
+            let y = 0;
+            let x = 0;
+            for(let i=0; i<size; i++) {
+                for(let j=0; j<size; j++) {
+                    if(this == $tdList[i][j]) {
+                        y = i;
+                        x = j;
+                        break;
+                    }
+                }
+            }
+            if(this.innerText == gameNum) {
+                if(1 <= gameNum && gameNum <= size*size) {
+                    if(gameNum == 1) {
+                        timeId = setInterval(setTimer, 1000);
+                    }
+                    this.innerText = backList[y][x];
+                    this.style.backgroundColor = "antiquewhite";
+                } else {
+                    this.innerText = "";
+                    this.style.backgroundColor = "";
+
+					this.style.cursor = "default";
+                }
+                gameNum += 1;
+
+                document.querySelector("#nextNum").innerText = gameNum;
+            }
+
+            gameOver();
+        }
+
+        function hintClick() {
+            let y = 0;
+            let x = 0;
+            for(let i=0; i<size; i++) {
+                for(let j=0; j<size; j++) {
+                    if($tdList[i][j].innerText == gameNum) {
+                        y = i;
+                        x = j;
+                        break;
+                    }
+                }
+            }
+
+            $tdList[y][x].style.backgroundColor = "red";
+        }
+    
+        function clearTable() {
+            $center.removeChild($table );
+        }
+
+        function replayClick() {
+            clearInterval(timeId);
+            clearTable();
+
+            // 변수 초기화
+            gameNum = 1;       
+            time = 0;    
+            timeId = null;
+            frontList = [];
+            backList = [];
+            $table = document.createElement("table");; 
+            $tdList = [];
+            document.querySelector("#timer").innerText = time;
+            document.querySelector("#nextNum").innerText = gameNum;
+
+            init();
+        }
+        
+        function gameOver() {
+            if(gameNum > size*size*2) {
+                clearInterval(timeId);
+
+                // 게임 종료 화면
+                alert("게임을 종료합니다!");
+            }
+        }
+
+    </script>
+
+</body>
+</html>

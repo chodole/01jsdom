@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            border: 1px black solid;
+        }
+        img{
+            width: 70px;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>장바구니</h2>
+    </div>
+    <div>
+        <table id="center">
+            <tr>
+                <td><input type="checkbox" id="all" onclick="allCheck()"></td>
+                <td>전체선택(<span id="checkedCount">0</span>/<span id="totalCount">0</span>)</td>
+                <td colspan="4"><a onclick="delCheckedItemClick()">선택삭제</a></td>
+            </tr>
+            <tr id="waterMelon">
+                <td><input type="checkbox" name="choose" value="waterMelon" onclick="trCheck()"></td>
+                <td><img src="images/수박.jpg"></td>
+                <td>당도선별 수박 6kg 이상</td>
+                <td>
+                    <button class="minus" onclick = "minusEvent(this)">-</button>
+                    <span class="itemCount">1</span>
+                    <button class="plus" onclick="plusEvent(this)">+</button>
+                </td>
+                <td class="itemPrice">18900원</td>
+                <td>
+                    <button class="cancle" onclick="deleteEvent(this)">X</button>
+                </td>
+            </tr>
+            <tr id="bulgogi">
+                <td><input type="checkbox" name="choose" value="bulgogi" onclick="trCheck()"></td>
+                <td><img src="images/불고기.jpg"></td>
+                <td>양념 소불고기</td>
+                <td>
+                    <button class="minus" onclick = "minusEvent(this)">-</button>
+                    <span class="itemCount">1</span>
+                    <button class="plus" onclick="plusEvent(this)">+</button>
+                </td>
+                <td class="itemPrice">19900원</td>
+                <td>
+                    <button class="cancle" onclick="deleteEvent(this)">X</button>
+                </td>
+            </tr>
+            <tr id="cherry">
+                <td><input type="checkbox" name="choose" value="cherry" onclick="trCheck()"></td>
+                <td><img src="images/체리.jpg"></td>
+                <td>미국 캘리포니아 생체리</td>
+                <td>
+                    <button class="minus" onclick = "minusEvent(this)">-</button>
+                    <span class="itemCount">1</span>
+                    <button class="plus" onclick="plusEvent(this)">+</button>
+                </td>
+                <td class="itemPrice">10900원</td>
+                <td>
+                    <button class="cancle" onclick="deleteEvent(this)">X</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let itemPriceList = [18900, 19990, 10900];
+
+        let $center = document.querySelector("#center");
+        let $allCheck = document.querySelector("#all");
+        let $checkCount = document.querySelector("#checkCount");
+        let $checkList = document.getElementsByName("choose");
+        let $minusList = document.querySelectorAll(".minus");
+        let $plusList = document.querySelectorAll(".plus");
+        let $itemCountList = document.querySelectorAll(".itemCount");
+        let $itemPriceList = document.querySelectorAll(".itemPrice");
+        let $buttonList = document.querySelectorAll(".button");
+
+        let count = 0;
+
+        function countCheck(){
+            let $totalCount = $checkList.length;
+            document.querySelector("#totalCount").innerText = $totalCount;
+            document.querySelector("#checkedCount").innerText = count;
+        }
+
+        function allCheck(){
+            if($allCheck.checked){
+                for(let i=0;i<$checkList.length;i++){
+                    $checkList[i].checked = true;
+                    count++;
+                }
+            }else{
+                for(let i=0;i<$checkList.length;i++){
+                    $checkList[i].checked = false;
+                }
+                count = 0;
+            }
+            
+            countCheck();
+        }
+
+        function trCheck(){
+            count = 0;
+            let result = true;
+
+            for(let i=0;i<$checkList.length;i++){
+                if($checkList[i].checked){
+                    count++;
+                }else{
+                    result = false;
+                }
+            }
+
+            if(result){
+                $allCheck.checked = true;
+            }else{
+                $allCheck.checked = false;
+            }
+
+            countCheck();
+        }
+
+        function minusEvent(e){
+            let index = 0;
+            for(let i=0;i<$minusList.length;i++){
+                if($minusList[i] == e){
+                    index = i;
+                    break;
+                }
+            }
+            console.log(index);
+            let count = Number($itemCountList[index].innerText);
+            if($itemCountList[index].innerText > 0){
+                count -=1;
+                $itemCountList[index].innerText = count;
+            }
+            $itemPriceList[index].innerText = itemPriceList[index] * count + "원";
+        }
+
+        function plusEvent(e){
+            let index = 0;
+            for(let i=0;i<$plusList.length;i++){
+                if($plusList[i] == e){
+                    index = i;
+                    break;
+                }
+            }
+            console.log(index);
+            let count = Number($itemCountList[index].innerText);
+            count +=1;
+            $itemCountList[index].innerText = count;
+            $itemPriceList[index].innerText = itemPriceList[index] * count + "원";
+        }
+        
+        function deleteEvent(e){
+            let index = 0;
+            for(let i=0;i<$buttonList.length;i++){
+                if($buttonList[i] == e){
+                    index = i;
+                    break;
+                }
+            }
+
+            $center.children[0].children[index+1].remove();
+            if(count != 0){
+                count --;
+            }
+            countCheck();
+
+        }
+
+        function delCheckedItemClick(){
+            while(true){
+                let check = false;
+                for(let i=0;i<$checkList.length;i++){
+                    if($checkList[i].checked){
+                        $center.children[0].children[i+1].remove();
+                        count--;
+                        check = true;
+                        break;
+                    }
+                }
+
+                if(check == false){
+                    break;
+                }
+            }
+
+            countCheck();
+        }
+    </script>
+</body>
+</html>

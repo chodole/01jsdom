@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #target { 
+           margin: 0 auto;
+           text-align: center;
+           display: table;
+        }
+        td {
+            width: 100px;
+            height: 100px;
+            border: 3px solid white;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+        #msg {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body onload="init()">
+
+    <div id="target">
+        <h3>숫자 슬라이드 게임</h3>
+    </div>
+    <div id="msg"></div>
+
+    <script>
+        let $target = document.querySelector("#target");
+        let $msg = document.querySelector("#msg");
+
+        let size = 5;
+        let $table = document.createElement("table");
+        let $tdList = [];
+        let $hintTdList = [];       // 0주변의 td태그값
+        let answer = [0, 0];        // 값이 0인 y좌표,x좌표
+
+        let id = null;
+
+        function init() {
+            let index = 1;
+            for(let i=0; i<size; i++) {
+                let $tr = document.createElement("tr");
+
+                let $temp = [];
+                for(let j=0; j<size; j++) {
+                    let $td = document.createElement("td");
+                    if(index < size * size) {
+                        $td.style.backgroundColor = "coral";
+                    }
+                    $td.innerText = index;
+                    $td.addEventListener("click", clickEvent);
+                    $tr.append($td);
+
+                    $temp.push($td);
+
+                    index += 1;
+                }
+                $tdList.push($temp);
+
+                $table.append($tr);
+            }
+            $target.append($table);
+
+            setNumber();
+        }
+
+        function setNumber() {
+            // numList 일차원 배열을 shuffle
+            // => 실제 선택하면서 shuffle로 변경하기
+            
+            for(let i=0; i<1000; i++) {
+                hint();
+
+                let r = Math.floor(Math.random() * $hintTdList.length);
+
+                let y = 0;
+                let x = 0;
+                for(let j=0; j<size; j++) {
+                    for(let k=0; k<size; k++) {
+                        if($tdList[j][k] == $hintTdList[r]) {
+                            y = j;
+                            x = k;
+                            break;
+                        }
+                    }
+                }
+
+                let temp = $tdList[y][x].innerText;     // 1
+                $tdList[y][x].innerText = size*size;            // 내가 선택한 위치의 값 = 0
+                $tdList[answer[0]][answer[1]].innerText = temp; // 
+
+                $tdList[y][x].style.backgroundColor = "";
+                $tdList[answer[0]][answer[1]].style.backgroundColor = "coral";
+            }
+        }
+
+        function clickEvent() {
+            // 선택한 위치의 좌표를 구하기
+            let y = 0;
+            let x = 0;
+            for(let i=0; i<size; i++) {
+                for(let j=0; j<size; j++) {
+                    if(this == $tdList[i][j]) {
+                        y = i;
+                        x = j;
+                        break;
+                    }
+                }
+            }
+            console.log("선택한 위치의 좌표 >>> y = " + y + ", x = " + x);
+
+            hint();
+
+            // 현재 클릭한 좌표 = y(2), x(2)
+            // $hintTdList = [19, 4, 1, 7] 
+            let check = false;
+            for(let i=0; i<$hintTdList.length; i++) {
+                if($tdList[y][x] == $hintTdList[i]) {
+                    check = true;
+                    break;
+                }
+            }
+            console.log(check);
+
+            if(check) {
+                let temp = $tdList[y][x].innerText;     // 1
+                $tdList[y][x].innerText = size*size;            // 내가 선택한 위치의 값 = 0
+                $tdList[answer[0]][answer[1]].innerText = temp; // 
+
+                $tdList[y][x].style.backgroundColor = "";
+                $tdList[answer[0]][answer[1]].style.backgroundColor = "coral";
+            }
+
+            gameExit();
+        }
+
+        function hint() {
+            $hintTdList = [];
+            
+            for(let i=0; i<size; i++) {
+                for(let j=0; j<size; j++) {
+                    if($tdList[i][j].innerText == size*size) {
+                        answer[0] = i;
+                        answer[1] = j;
+
+                        // 상
+                        if(0 <= i - 1 && i - 1 < size) {
+                            $hintTdList.push($tdList[i - 1][j]);
+                        }
+                        // 하
+                        if(0 <= i + 1 && i + 1 < size) {
+                            $hintTdList.push($tdList[i + 1][j]);
+                        }
+                        // 좌
+                        if(0 <= j + 1 && j + 1 < size) {
+                            $hintTdList.push($tdList[i][j + 1]);
+                        }
+                        // 우
+                        if(0 <= j - 1 && j - 1 < size) {
+                            $hintTdList.push($tdList[i][j - 1]);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            let str = "";
+            for(let i=0; i<$hintTdList.length; i++) {
+                str += $hintTdList[i].innerText + " ";
+            }
+            console.log(str);
+        }
+
+        function gameExit() {
+            let result = true;
+
+            let num = 1;
+            for(let i=0; i<size; i++) {
+                for(let j=0; j<size; j++) {
+                    if($tdList[i][j].innerText != num) {
+                        result = false;
+                        break;
+                    }
+                    num += 1;
+                }
+            }
+            console.log("result = " + result);
+            
+            if(result) {
+                $msg.innerHTML = "<h5 id='text'>게임을 종료합니다. 3초뒤에 게임이 재시작됩니다.</h5>";
+
+                setTimeout(replay, 3000);
+            }
+        }
+
+        function replay() {
+
+            $target.removeChild($table);
+            $msg.innerText = "";
+
+            $table = document.createElement("table");
+            $tdList = [];
+            $hintTdList = [];       // 0주변의 td태그값
+            answer = [0, 0];        // 값이 0인 y좌표,x좌표
+
+            init();
+        }
+
+    </script>
+    
+</body>
+</html>
