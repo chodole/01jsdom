@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            text-align: center;
+            display: table;
+            margin: 0 auto;
+        }
+        td {
+            border: 1px solid black;
+            width: 70px;
+            text-align: center;
+        }
+        #admin { background-color: antiquewhite;}
+        #user { background-color: burlywood;}
+        .adminCount, .adminPlus, .adminMinus, .userCount, .userPlus, .userMinus {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <h1>식권 자판기</h1>
+
+        <table id="admin">
+            <tr>
+                <td colspan="5">관리자</td>
+            </tr>
+            <tr>
+                <td>오만원권</td>
+                <td>50,000</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>일만원</td>
+                <td>10,000</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>오천원권</td>
+                <td>5,000</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>일천원권</td>
+                <td>1,000</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>오백원</td>
+                <td>500</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>일백원</td>
+                <td>100</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>식권가격</td>
+                <td>2200</td>
+                <td><span class="adminCount">0</span></td>
+                <td><span class="adminPlus" onclick="amdinPlusClick(this)">+</span></td>
+                <td><span class="adminMinus" onclick="adminMinusClick(this)">-</span></td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <table id="user">
+            <tr>
+                <td colspan="5">사용자</td>
+            </tr>
+            <tr>
+                <td>오만원권</td>
+                <td>50,000</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>일만원</td>
+                <td>10,000</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>오천원권</td>
+                <td>5,000</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>일천원권</td>
+                <td>1,000</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>오백원</td>
+                <td>500</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>일백원</td>
+                <td>100</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+            <tr>
+                <td>식권가격</td>
+                <td>2200</td>
+                <td><span class="userCount">0</span></td>
+                <td><span class="userPlus" onclick="userPlusClick(this)">+</span></td>
+                <td><span class="userMinus" onclick="userMinusClick(this)">-</span></td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <button onclick="purchaseTicket()">식권 구입하기</button>
+    </div>
+
+    <script>
+        let $adminCountList = document.querySelectorAll(".adminCount");
+        let $adminPlusList = document.querySelectorAll(".adminPlus");
+        let $adminMinusList = document.querySelectorAll(".adminMinus");
+        
+        let $userCountList = document.querySelectorAll(".userCount");
+        let $userPlusList = document.querySelectorAll(".userPlus");
+        let $userMinusList = document.querySelectorAll(".userMinus");
+
+        let moneyList = [50000, 10000, 5000, 1000, 500, 100];
+        // 아래 adminCountList와 userCountList 배열의 길이가
+        // 7개인 이유는 마지막 요소가 
+        // adminCountList는 관리자 식권수량을 저장하기 위함이고,
+        // userCountList는 사용자 식권 구매수량을 저장하기 위함이다.
+        let adminCountList = [0, 0, 0, 0, 0, 0, 0];
+        let userCountList = [0, 0, 0, 0, 0, 0, 0];
+        let ticketPrice = 2200;
+
+        /* 관리자 */
+        function amdinPlusClick(element) {
+            for(let i=0; i<$adminPlusList.length; i++) {
+                if(element == $adminPlusList[i]) {
+                    $adminCountList[i].innerText = Number($adminCountList[i].innerText) + 1;
+                    adminCountList[i] += 1;
+                }
+            }
+        }
+        function adminMinusClick(element) {
+            for(let i=0; i<$adminPlusList.length; i++) {
+                if(element == $adminMinusList[i]) {
+                    // return은 함수를 강제 종료하는 명령어
+                    if($adminCountList[i].innerText == 0) return;
+                    $adminCountList[i].innerText = Number($adminCountList[i].innerText) - 1;
+                    adminCountList[i] -= 1;
+                }
+            }
+        }
+        
+        /* 사용자 */
+        function userPlusClick(element) {
+            for(let i=0; i<$userPlusList.length; i++) {
+                if(element == $userPlusList[i]) {
+                    $userCountList[i].innerText = Number($userCountList[i].innerText) + 1;
+                    userCountList[i] += 1;
+                }
+            }
+        }
+        function userMinusClick(element) {
+            for(let i=0; i<$userMinusList.length; i++) {
+                if(element == $userMinusList[i]) {
+                    if($userCountList[i].innerText == 0) return;
+                    $userCountList[i].innerText = Number($userCountList[i].innerText) - 1;
+                    userCountList[i] -= 1;
+                }
+            }
+        }
+
+        /* 식권구입하기 */
+        function purchaseTicket() {
+            console.log("Before >>>");
+            console.log("관리자 = " + adminCountList);
+            console.log("사용자 = " + userCountList);
+
+            let amdinTicketCount = adminCountList[6];
+            let userTicketCount = userCountList[6];
+            // 1. 사용자가 구매하려는 티켓의 수량 <= 재고수량 
+            if(userTicketCount <= amdinTicketCount) {
+                // 1-1. 사용자에게 투입해야할 금액을 출력
+                let total = userTicketCount * ticketPrice;
+                console.log("총 금액은 " + total + "원 입니다.");
+
+                let payTotal = 0;
+                for(let i=0; i<moneyList.length; i++) {
+                    payTotal += userCountList[i] * moneyList[i];
+                }
+                console.log("투입하신 금액은 총 금액은 " + payTotal + "원 입니다.");
+                // 1-2. 사용자가 투입한 총 금액 >= 결제해야할 총금액
+                if(payTotal >= total) {
+                    // 1-2-1. 거스름돈 계산하기
+                    let charge = payTotal - total;
+                    console.log("거스름 돈은 " + charge + "원 입니다.");
+
+                    let tempAdminCountList = [];
+                    for(let i=0; i<moneyList.length; i++) {
+                        tempAdminCountList.push(adminCountList[i]);
+                    }
+                    let tempCharge = charge;
+                    let i = 0;
+                    while(i < moneyList.length) {
+                        if(tempCharge >= moneyList[i] && tempAdminCountList[i] > 0) {
+                            tempCharge -= moneyList[i];
+                            tempAdminCountList[i] -= 1;
+                        } else {
+                            i += 1;
+                        }
+                    }
+                    
+                    // 1-2-2. 화폐종류별 재고수량과 거스름돈을 비교해 거스름돈 반환 가능
+                    if(tempCharge == 0) {
+                        for(let i=0; i<moneyList.length; i++) {
+                            adminCountList[i] = tempAdminCountList[i];
+                            adminCountList[i] += userCountList[i];
+                        }
+                        adminCountList[6] -= userCountList[6];
+
+                        console.log("After >>>");
+                    console.log("관리자 = " + adminCountList);
+                    }
+                    // 1-2-3. 화폐종류별 재고수량과 거스름돈을 비교해 거스름돈 반환 불가
+                    else {
+                        alert("거스름돈이 부족합니다. 관리자에게 문의해주세요.");
+                    }
+                } 
+                // 1-3. 사용자가 투입한 총 금액 < 결제해야할 금액
+                else {
+                    alert("투입하신 금액이 부족합니다. 다시 이용해주세요.");
+                }
+
+            } 
+            // 2. 사용자가 구매하려는 티켓의 수량 > 재고수량
+            else {
+                alert("식권의 수량이 부족합니다. 관리자에게 문의해주세요.");
+            }
+        }
+
+    </script>
+
+</body>
+</html>

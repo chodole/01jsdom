@@ -29,9 +29,14 @@ class NoteDao{
                     i--;
                 }
             }
-
+            
+            let temp = [0,garo,0];
             for(let i=0;i<long;i++){
-                sero.push(0);
+                if(i==0){
+                    sero.push(temp);
+                }else{
+                    sero.push(0);
+                }
             }
             let note = new Note(sero,garo,speed);
 

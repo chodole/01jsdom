@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin : 0 auto;
+            text-align: center;
+            display: table;
+        }
+
+        td{
+            border: 1px black solid;
+            width:  300px;
+            text-align: left;
+            padding: 4px;
+        }
+
+        span{
+            display: inline-block;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="textSpace1"> <input type="submit" onclick="submitEvent()" value="댓글달기">
+    </div>
+    <div>
+        <table></table>
+    </div>
+    
+    <script>
+
+        let $table =document.querySelector("table");
+        let ref = 0;
+        let commentList = [];
+
+        class Comment{
+            ref = 0;
+            ref_step = 0;
+            ref_level = 0;
+            ref_comment = "";
+            check = false;
+
+            constructor(ref, ref_step, ref_level,  ref_comment){
+                this.ref = ref;
+                this.ref_step = ref_step;
+                this.ref_level = ref_level;
+                this.ref_comment = ref_comment;
+            }
+        }
+
+        function submitEvent(){
+            let $textSpace = document.querySelector("#textSpace1");
+
+            if($textSpace.value == ""){
+                alert("댓글을 입력하세요");
+            }else {
+                ref++;  
+                let comment = new Comment(ref, 0, 0,$textSpace.value);
+                commentList.push(comment);
+
+                commentTable();
+            }
+        }
+
+        function reComment(e){
+            let trList = document.querySelectorAll("tr");
+
+            for(let i=0;i<trList.length;i++){
+                if(trList[i].children[0].children[0] == e){
+                    if(commentList[i].check) {
+                        trList[i].children[1].remove();
+                        commentList[i].check = false;
+                    }else{
+                        let td = document.createElement("td");
+                        td.innerHTML = `<input type="text" class="textSpace"> <input type="submit" onclick="submit2Event(${i})" value="댓글달기">`;
+                        trList[i].append(td);
+                        commentList[i].check = true;
+                    }
+                }
+            }
+        }
+
+        function submit2Event(index) {
+            let $textSpace = document.querySelectorAll(".textSpace");
+            let $tr = document.querySelectorAll("tr");
+            commentList[index].check = false;
+
+            let ref1 = commentList[index].ref;
+            let ref_step1 = commentList[index].ref_step + 1;
+            let ref_level = commentList[index].ref_level + 1;
+
+            for(let i=0;i<commentList.length;i++){
+                if(commentList[i].ref_level >= commentList[index].ref_level && commentList[i].ref_level != 0 && i != index){
+                    commentList[i].ref_level ++;
+                }
+            }
+            
+            let cString = $tr[index].children[1].children[0].value;
+            let comment = new Comment(ref1, ref_step1, ref_level, cString);
+            commentList.push(comment);
+
+            commentTable();
+        }
+
+        function sortTable(){
+            commentList.sort((a,b) =>{
+                if(a.ref>b.ref){
+                    return -1;
+                }else if(a.ref<b.ref){
+                    return 1;
+                }else{
+                    if(a.ref_level>b.ref_level){
+                        return 1;
+                    }else if(a.ref_level<b.ref_level){
+                        return -1;
+                    }else{
+                        return 0;
+                    }
+                }
+            });
+        }
+
+        function createTable(){
+            $table.innerHTML = "";
+
+            for(let i=0;i<commentList.length;i++){
+                let tr = document.createElement("tr");
+                let td = document.createElement("td");
+                let str = "<span onclick='reComment(this)'>";
+                if(commentList[i].ref_step > 0) {
+                    for(let j=0;j<commentList[i].ref_step;j++){
+                        str += "=>";
+                    }
+                }
+                str += commentList[i].ref_comment;
+                str += "</span>";
+                td.innerHTML = str;
+                tr.append(td);
+                $table.append(tr);
+            }
+        }
+
+        function commentTable(){
+            sortTable();
+            console.log(commentList);
+            createTable();
+        }
+        
+    </script>
+</body>
+</html>

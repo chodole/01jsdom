@@ -98,7 +98,11 @@
 
         function noteTime(note,i){
             for(let i=0;i<note.sero.length;i++){
-                $tdList[note.sero[i]][note.garo].style.backgroundColor = "aqua";
+                if(i==0){
+                    $tdList[note.sero[i][1]][note.garo].style.backgroundColor = "aqua";
+                }else {
+                    $tdList[note.sero[i]][note.garo].style.backgroundColor = "aqua";
+                }
             }
             timeList.push(setInterval(()=>{
                 noteDown(note,i);
@@ -112,30 +116,46 @@
                 return;
             }
             
-            if(note.sero[long-1] < sero-1 && note.sero[0]>=long-1){
+            if(note.sero[long-1] < sero-1 && note.sero[0][1]>=long-1){
                 $tdList[note.sero[long-1]][note.garo].style.backgroundColor = "";
             }
 
             for(let i=long-1;i>0;i--){
-                note.sero[i] = note.sero[i-1];
+                if(i==1){
+                    note.sero[i] = note.sero[i-1][1];
+                }else{
+                    note.sero[i] = note.sero[i-1];
+                }
             }
             
-            if(note.sero[0] > sero-1){
-                note.sero[0] = -1;
+            if(note.sero[0][1] > sero-1){
+                note.sero[0][1] = -1;
             }
-            if(note.sero[0] != -1){
-                note.sero[0]++;
+            if(note.sero[0][1] != -1){
+                note.sero[0][1]++;
             }
 
             for(let i=0;i<long;i++){
-                if(note.sero[i]<= sero-1 && note.sero[i] != -1){
-                    $tdList[note.sero[i]][note.garo].style.backgroundColor = "aqua";
-                    if(note.sero[i] == sero-1 && i==long-1){
-                        setTimeout(()=>{
-                            $tdList[sero-1][note.garo].style.backgroundColor = "coral";  
-                        },100);
+                if(i==0){
+                    if(note.sero[i][1]<= sero-1 && note.sero[i][1] != -1){
+                        $tdList[note.sero[i][1]][note.garo].style.backgroundColor = "aqua";
+                        if(note.sero[i][1] == sero-1 && i==long-1){
+                            setTimeout(()=>{
+                                $tdList[sero-1][note.garo].style.backgroundColor = "coral";  
+                            },100);
+                        }
+                    }
+                }else {
+                    if(note.sero[i]<= sero-1 && note.sero[i] != -1){
+                        $tdList[note.sero[i]][note.garo].style.backgroundColor = "aqua";
+                        if(note.sero[i] == sero-1 && i==long-1){
+                            setTimeout(()=>{
+                                $tdList[sero-1][note.garo].style.backgroundColor = "coral";  
+                            },100);
+                        }
                     }
                 }
+                
             }
            // console.log(note.sero);
             
@@ -156,9 +176,18 @@
                     let long =noteList[i].sero.length;
                     let check = false;
                     for(let j=0;j<long;j++){
-                        if(noteList[i].sero[j] >= sero-1){
-                            check = true;
+                        if(j==0){
+                            if(noteList[i].sero[j][1] >= sero-1){
+                                check = true;
+                                break;
+                            }
+                        }else{
+                            if(noteList[i].sero[j] >= sero-1){
+                                check = true;
+                                break;
+                            }
                         }
+                        
                     }
                     
                     if(check && str==string){
@@ -166,6 +195,11 @@
                         combo+=1;
                         $score.innerText = score + " , "+combo+"Combo!";
                         $ranCheck.innerText = "Great";
+                        console.log("Great");
+                        if(noteList[i].sero[0] != -1){
+                            doubleCheck();
+                        }
+                        console.log("end");
                     }
                 }
 
@@ -174,6 +208,12 @@
                 },150);
             }
             
+        }
+
+        function doubleCheck(){
+            for(let i=0;i<5;i++){
+                console.log("Bad");
+            }
         }
 
         let timer = null;
@@ -210,16 +250,16 @@
             isPress = false;
             if(e.code == "ArrowRight"){
                 $tdList[sero-1][3].style.backgroundColor = "coral";
-                setTimeout(DeleteRan,300);
+                setTimeout(DeleteRan,400);
             }else if(e.code == "ArrowLeft"){
                 $tdList[sero-1][0].style.backgroundColor = "coral";
-                setTimeout(DeleteRan,300);
+                setTimeout(DeleteRan,400);
             }else if(e.code == "ArrowUp"){
                 $tdList[sero-1][2].style.backgroundColor = "coral";
-                setTimeout(DeleteRan,300);
+                setTimeout(DeleteRan,400);
             }else if(e.code == "ArrowDown"){
                 $tdList[sero-1][1].style.backgroundColor = "coral";
-                setTimeout(DeleteRan,300);
+                setTimeout(DeleteRan,400);
             }
             
         });
