@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="650" height="650" style="border: 1px solid black;"></canvas>
+
+    <script>
+        function drawGrid(){
+            ctx.beginPath();
+
+            let originX = 100;
+            let originY = 100;
+            let lineGap = 50;
+            let lineCount = 10;
+
+            for(let i=0;i<lineCount;i++){
+                let startX = originX + lineGap * i;
+                let startY = originY;
+                let endX = startX;
+                let endY = lineGap * (lineCount - 1) + originY;
+
+                ctx.moveTo(startX,startY);
+                ctx.lineTo(endX,endY);
+                ctx.stroke();
+            }
+
+            for(let i=0;i<lineCount;i++){
+                let startY = originY+lineGap * i;
+                let startX = originX;
+                let endY = startY;
+                let endX = lineGap * (lineCount-1) + originX;
+                ctx.moveTo(startX,startY);
+                ctx.lineTo(endX,endY);
+                ctx.stroke();
+            }
+
+            ctx.closePath();
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+        drawGrid();
+    </script>
+</body>
+</html>

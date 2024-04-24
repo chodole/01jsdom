@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 이동키 : A S D W </h1>
+    <h1> 작은네모를 이동시켜 큰 원과 충돌시켜보세요. </h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+    <script>
+
+        function draw(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            drawArc(targetArc);
+            drawRect(myRect);
+            moveRect(myRect);
+
+            let check = collisionRectAndArc(myRect,targetArc);
+            if(check){
+                myRect.color = "red";
+            }else{
+                myRect.color = "blue";
+            }
+
+            ctx.beginPath();
+            ctx.arc(targetArc.x,targetArc.y,2,0,Math.PI*2);
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+            ctx.closePath();
+
+            let tempRect = {
+                x : myRect.x - targetArc.radius,
+                y : myRect.y - targetArc.radius,
+                width : myRect.width + targetArc.radius * 2,
+                height : myRect.height + targetArc.radius * 2
+            };
+            ctx.beginPath();
+            ctx.rect(tempRect.x, tempRect.y,tempRect.width,tempRect.height);
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        function drawArc(arc){
+            ctx.beginPath();
+            ctx.arc(arc.x,arc.y,arc.radius,0,Math.PI*2);
+            ctx.fillStyle = arc.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawRect(rect){
+            ctx.beginPath();
+            ctx.rect(rect.x,rect.y,rect.width,rect.height);
+            ctx.fillStyle = rect.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function moveRect(rect){
+            if(getKeyStay("left")){
+                rect.x -= rect.speed;
+            }
+            if(getKeyStay("right")){
+                rect.x += rect.speed;
+            }
+            if(getKeyStay("up")){
+                rect.y -= rect.speed;
+            }
+            if(getKeyStay("down")){
+                rect.y += rect.speed;
+            }
+        }
+
+        function getPointInRect(arcX,arcY,rect){
+            let left = rect.x;
+            let right = rect.x+rect.width;
+            let top = rect.y;
+            let bottom = rect.y+rect.height;
+
+            if(left < arcX && arcX<right && top<arcY && arcY>bottom){
+                return true;
+            }
+            return false;
+        }
+
+        function getPointInArc(x,y,arc){
+            let hypotenusePow = Math.abs((x-arc.x)*(x-arc.x) + (y-arc.y)*(y-arc.y));
+            let hypotenuse = Math.sqrt(hypotenusePow);
+            if(hypotenuse <= arc.radius){
+                return true;
+            }
+            return false;
+        }
+
+        function collisionRectAndArc(rect,arc){
+            let tempRect = {
+                x : rect.x - arc.radius,
+                y : rect.y - arc.radius,
+                width : rect.width + arc.radius*2,
+                height : rect.height + arc.radius*2
+            };
+
+            if((rect.x<arc.x && arc.x<rect.x+rect.width) || 
+                (rect.y < arc.y && arc.y < rect.y+rect.height)){
+                    if(getPointInRect(arc.x,arc.y,tempRect)){
+                        return true;
+                    }
+            }
+
+            if(getPointInArc(rect.x,rect.y,arc)){
+                return true;
+            }
+
+            if(getPointInArc(rect.x+rect.width,rect.y,arc)){
+                return true;
+            }
+
+            if(getPointInArc(rect.x,rect.y+rect.height,arc)){
+                return true;
+            }
+
+            if(getPointInArc(rect.x+rect.width,rect.y+rect.height,arc)){
+                return true;
+            }
+
+            $testText = document.querySelector(".testText");
+            let temp = `체크 사각형 : ${tempRect.x} , ${tempRect.y} , ${tempRect.width} , ${tempRect.height} <br><br>`;
+            temp += `원본 사각형 : ${rect.x} , ${rect.y} , ${rect.width} , ${rect.height} <br><br>`;
+            temp += `원 : ${arc.x} , ${arc.y}, ${arc.radius} <br><br>`;
+            $testText.innerHTML = temp;
+
+            return false;
+        }
+
+        function getKeyStay(key){
+            return keyStay[key];
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if(e.code == 'KeyD') {         
+                keyStay.right = true;
+            }
+            if(e.code == 'KeyA') {   
+                keyStay.left = true;
+            }
+            if(e.code == 'KeyW') {    
+                keyStay.up = true;
+            }
+            if(e.code == 'KeyS') {   
+                keyStay.down = true;
+            }
+        });
+
+        window.addEventListener("keyup", (e) => {
+            if(e.code == 'KeyD') {         
+                keyStay.right = false;
+            }
+            if(e.code == 'KeyA') {  
+                keyStay.left = false;
+            }
+            if(e.code == 'KeyW') {    
+                keyStay.up = false;
+            }
+            if(e.code == 'KeyS') {  
+                keyStay.down = false;
+            }
+        });
+
+        //----------------------------------------------------------------------------
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+
+        let keyStay = {"right" : false, "left" : false, "up" : false, "down" : false};
+
+        let myRect = {
+            "x" : 80, 
+            "y" : 80, 
+            "width" : 50, 
+            "height" : 50, 
+            "speed" : 2,
+            "color" : "blue"
+        };
+
+        let targetArc = {
+            "x" : 200, 
+            "y" : 200, 
+            "radius" : 80, 
+            "color" : "green"
+        };
+
+        setInterval(draw, 10);
+        
+    </script>
+</body>
+</html>

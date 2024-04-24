@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+        function drawLine(){
+            /*
+                [0] 열기 
+                ctx.beginPath();
+
+                [1] 시작점
+                moveTo (start x , start y);
+                [2] 끝점
+                lineTo (end x , end y)
+                [3] 그리기
+                ctx.stroke();
+
+                [4] 닫기 
+                ctx.closePath();
+            */
+
+            ctx.beginPath();
+
+            ctx.moveTo(100,20);
+            ctx.lineTo(130,20);
+            ctx.stroke();
+
+            ctx.moveTo(130, 20);  // 시작점
+            ctx.lineTo(130, 50);  // 끝점
+            ctx.stroke();         // 그리기
+
+            ctx.moveTo(150,20);
+            ctx.lineTo(150,50);
+            ctx.stroke();
+
+            ctx.moveTo(120,70);
+            ctx.lineTo(150,70);
+            ctx.stroke();
+
+            ctx.moveTo(150,70);
+            ctx.lineTo(150,100);
+            ctx.stroke();
+
+
+            ctx.moveTo(120,100);
+            ctx.lineTo(150,100);
+            ctx.stroke();
+
+
+            ctx.moveTo(120,70);
+            ctx.lineTo(120,100);
+            ctx.stroke();
+
+
+            //-----------------------
+
+            ctx.moveTo(180,20);
+            ctx.lineTo(210,20);
+            ctx.stroke();
+
+            ctx.moveTo(210,20);
+            ctx.lineTo(210,50);
+            ctx.stroke();
+
+            ctx.moveTo(180,50);
+            ctx.lineTo(210,50);
+            ctx.stroke();
+
+            ctx.moveTo(180,20);
+            ctx.lineTo(180,50);
+            ctx.stroke();
+
+            ctx.moveTo(170,65);
+            ctx.lineTo(220,65);
+            ctx.stroke();
+
+            ctx.moveTo(185,65);
+            ctx.lineTo(185,90);
+            ctx.stroke();
+
+            ctx.moveTo(205,65);
+            ctx.lineTo(205,90);
+            ctx.stroke();
+
+            ctx.moveTo(175,80);
+            ctx.lineTo(175,100);
+            ctx.stroke();
+
+            ctx.moveTo(175,100);
+            ctx.lineTo(220,100);
+            ctx.stroke();
+
+            //-------------------------
+
+            ctx.moveTo(240,20);
+            ctx.lineTo(280,20);
+            ctx.stroke();
+
+            ctx.moveTo(260,20);
+            ctx.lineTo(240,50);
+            ctx.stroke();
+
+            ctx.moveTo(260,20);
+            ctx.lineTo(280,50);
+            ctx.stroke();
+
+            ctx.moveTo(280,40);
+            ctx.lineTo(300,40);
+            ctx.stroke();
+
+            ctx.moveTo(300,20);
+            ctx.lineTo(300,60);
+            ctx.stroke();
+
+            ctx.moveTo(250,70);
+            ctx.lineTo(290,70);
+            ctx.stroke();
+
+            ctx.moveTo(290,70);
+            ctx.lineTo(290,90);
+            ctx.stroke();
+
+            ctx.moveTo(250,90);
+            ctx.lineTo(290,90);
+            ctx.stroke();
+
+            ctx.moveTo(250,70);
+            ctx.lineTo(250,90);
+            ctx.stroke();
+
+            ctx.closePath();
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        drawLine();
+    </script>
+</body>
+</html>

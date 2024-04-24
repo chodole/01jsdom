@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>네모를 클릭후 마우스버튼을 때지말고 이동시켜보세요.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+    <script>
+        function draw(){
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            drawRect(myRect);
+            changeColor(myRect);
+        }
+
+        function drawRect(rect) {
+            ctx.beginPath();
+            ctx.rect(rect.x, rect.y, rect.width, rect.height);
+            ctx.fillStyle = rect.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function getPointInRect(x,y,rc){
+            let left = rc.x;
+            let right = rc.x + rc.width;
+            let top = rc.y;
+            let bottom = rc.y + rc.height;
+            if(left < x && x<right && top < y && y<bottom){
+                return true;
+            }
+            return false;
+        }
+
+        function changeColor(rect){
+            if(rect.state == "none"){
+                rect.color = "blue";
+            }else if(rect.state == "over"){
+                rect.color = "red";
+            }else if(rect.state == "click"){
+                rect.color = "green";
+            }
+        }
+
+        window.addEventListener("mousedown",(e)=>{
+            let mx = event.clientX - ctx.canvas.offsetLeft;
+            let my = event.clientY - ctx.canvas.offsetTop;
+            if(getPointInRect(mx,my,myRect)){
+                myRect.state = "click";
+                myRect.gapX = mx-myRect.x;
+                myRect.gapY = my-myRect.y;
+            }
+        });
+
+        window.addEventListener("mousemove",(e)=>{
+            let mx = event.clientX - ctx.canvas.offsetLeft;
+            let my = event.clientY - ctx.canvas.offsetTop;
+            if(myRect.state == "click"){
+                myRect.x = mx-myRect.gapX;
+                myRect.y = my-myRect.gapY;
+                return;
+            }
+
+            if(getPointInRect(mx,my,myRect)){
+                myRect.state = "over";
+            }else{
+                myRect.state = "none";
+            }
+        });
+
+        window.addEventListener("mouseup",(e)=>{
+            let mx = event.clientX - ctx.canvas.offsetLeft;
+            let my = event.clientY - ctx.canvas.offsetTop;
+            if(getPointInRect(mx,my,myRect)){
+                myRect.state = "over";
+            }else{
+                myRect.state = "none";
+            }
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let myRect = {
+            "x" : 100,
+            "y" : 100,
+            "width" : 150,
+            "height" : 150,
+            "color" : "blue",
+            "state" : "none",
+            "gapX" : 0,
+            "gapY" : 0
+        };
+
+        setInterval(draw,10);
+
+    </script>
+</body>
+</html>

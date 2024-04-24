@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이미지에 마우스를 오버 하세요.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+    <div class="testText"></div>
+    <script>
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            ctx.drawImage(img,x,y,width,height);
+
+            ctx.font = "30px Fira";
+            ctx.strokeText(buttonText,x+13,y+33);
+
+            ctx.fillStyle = "rgb(100,200,100)";
+            ctx.fillText(buttonText,x+13,y+33);
+        }
+
+        window.addEventListener("mousemove",(event)=>{
+            let mx = event.clientX - ctx.canvas.offsetLeft;
+            let my = event.clientY - ctx.canvas.offsetTop;
+
+            if(x<mx && mx<x+width && y<my && my<y+height){
+                img.src = "BTN_Brown.png";
+            }else{
+                img.src = "BTN_Gray.png";
+            }
+
+            let testText = document.querySelector(".testText");
+            testText.innerHTML = ``;
+            testText.innerHTML += `x  : ${x} <br>`;
+            testText.innerHTML += `y  : ${y} <br>`;
+            testText.innerHTML += `mx  : ${mx} <br>`;
+            testText.innerHTML += `my : ${my} <br>`;
+            testText.innerHTML += `ctx.canvas.offsetLeft  : ${ctx.canvas.offsetLeft} <br>`;
+            testText.innerHTML += `ctx.canvas.offsetTop : ${ctx.canvas.offsetTop} <br>`;
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+
+        let x = 220;
+        let y = 220;
+        let width = 100;
+        let height = 50;
+
+        let img = new Image();
+        img.src = "BTN_Gray.png";
+        let buttonText = "OVER";
+
+        setInterval(draw, 10);
+
+    </script>
+</body>
+</html>

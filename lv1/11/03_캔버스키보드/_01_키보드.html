@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>F12 콘솔창을 열고 키보드를 눌러보세요.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <script>
+        function draw(){
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+        }
+
+        window.addEventListener("keydown",(e) => {
+            console.log("down ="+e.code);
+        });
+
+        window.addEventListener("keyup", (e) =>{
+            console.log("up = "+e.code);
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+        setInterval(draw, 10);
+
+    </script>
+</body>
+</html>

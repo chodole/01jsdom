@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>사각형을 클릭하세요.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+    <script>
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+
+            for(let i=0;i<rectList.length;i++){
+                drawRect(rectList[i]);
+                drawText(rectList[i]);
+            }
+        }
+
+        function drawRect(node){
+            ctx.beginPath();
+            ctx.rect(node.x,node.y,node.width,node.height);
+            ctx.fillStyle = node.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawText(node){
+            ctx.font = "25px Fira";
+            ctx.fillStyle = "white";
+            ctx.fillText(node.number,node.x+8, node.y+28);
+        }
+
+        window.addEventListener("click",(event)=>{
+            let mx = event.clientX - ctx.canvas.offsetLeft;
+            let my = event.clientY - ctx.canvas.offsetTop;
+
+            let testText = document.querySelector(".testText");
+            testText.innerHTML = ``;
+            testText.innerHTML += `mx  : ${my} <br>`;
+            testText.innerHTML += `my : ${my} <br>`;
+
+            for(let i=0;i<rectList.length;i++){
+                let x = rectList[i].x;
+                let y = rectList[i].y;
+                let width = rectList[i].width;
+                let height = rectList[i].height;
+
+                if(x < mx && mx < x + width && y < my && my < y + height){
+                    rectList[i].number = gameNumber;
+                    gameNumber += 1;      
+                }
+                testText.innerHTML += `x : ${x} y : ${y} width : ${width} height : ${height}<br>`;
+            }
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+
+        let originx = 100;
+        let originy = 100;
+        let gap = 50;
+        let width = 50;
+        let height = 50;
+
+        let rectList = [];
+        for(let i=0;i<4;i++){
+            let startx = originx + i * width + i * gap;
+            let starty = originy;
+            
+            let myRect = {
+                "x" : startx, 
+                "y" : starty, 
+                "width" : width, 
+                "height" : height, 
+                "number" : 0,
+                "color" : "blue",
+            };
+            rectList.push(myRect);
+        }
+        let gameNumber = 1;
+
+        setInterval(draw, 10);
+
+    </script>
+</body>
+</html>

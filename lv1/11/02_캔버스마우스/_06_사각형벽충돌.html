@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+    <script>
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+
+            drawRect();
+
+            if(dir=="east"){
+                x+=speed;
+            }else if(dir == "west"){
+                x-=speed;
+            }
+
+            if(x>=canvas.width - width){
+                dir="west";
+            }else if(x<0){
+                dir = "east";
+            }
+
+            let testText = document.querySelector(".testText");
+            testText.innerHTML = ``;
+            testText.innerHTML += `x  : ${x} <br>`;
+            testText.innerHTML += `y  : ${y} <br>`;
+            testText.innerHTML += `dir  : ${dir} <br>`;
+            testText.innerHTML += `speed : ${speed} <br>`;
+        }
+
+        function drawRect(){
+            ctx.beginPath();
+
+            ctx.rect(x,y,width,height);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+
+            ctx.closePath();
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+
+        let x = 0;
+        let y = 0;
+        let dir = "east";
+        let width = 100;
+        let height = 100;
+        let speed = 2;
+
+        setInterval(draw, 10);
+    </script>
+</body>
+</html>

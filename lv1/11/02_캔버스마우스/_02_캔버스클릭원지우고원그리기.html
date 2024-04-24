@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>화면을 클릭해보세요.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+
+    <script>
+        function drawArc(){
+            ctx.beginPath();
+
+            ctx.arc(x,y,radius,0,angle);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+
+            ctx.closePath();
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let x = 0;
+        let y = 0;
+        let radius = 50;
+        let angle = Math.PI * 2;
+
+        window.addEventListener("click",(event) =>{
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+
+            x=event.clientX - ctx.canvas.offsetLeft;
+            y=event.clientY - ctx.canvas.offsetTop;
+
+            drawArc();
+        });
+    </script>
+</body>
+</html>

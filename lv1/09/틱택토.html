@@ -94,8 +94,7 @@
             for(let i=0;i<size;i++){
                 if(dataList[i][0]==1 && dataList[i][1] == 1 && dataList[i][2] == 1) {
                     win = 1;
-                }
-                if(dataList[i][0]==2 && dataList[i][1] == 2 && dataList[i][2] == 2){
+                }else if(dataList[i][0]==2 && dataList[i][1] == 2 && dataList[i][2] == 2){
                     win = 2;
                 }
             }
@@ -104,23 +103,20 @@
             for(let i=0;i<size;i++){
                 if(dataList[0][i] == 1 && dataList[1][i] == 1 && dataList[2][i] == 1){
                     win = 1;
-                } 
-                if(dataList[0][i] == 2 && dataList[1][i] == 2 && dataList[2][i] == 2){
+                } else if(dataList[0][i] == 2 && dataList[1][i] == 2 && dataList[2][i] == 2){
                     win = 2;
                 }
             }
 
             if(dataList[0][0] == 1 && dataList[1][1] == 1 && dataList[2][2]==1){
                 win = 1;
-            }
-            if(dataList[0][0] == 2 && dataList[1][1] == 2 && dataList[2][2]==2){
+            }else if(dataList[0][0] == 2 && dataList[1][1] == 2 && dataList[2][2]==2){
                 win = 2;
             }
 
             if(dataList[0][2]==1 && dataList[1][1]==1 && dataList[2][0] ==1){
                 win=1;
-            }
-            if(dataList[0][2]==2 && dataList[1][1]==2 && dataList[2][0] ==2){
+            }else if(dataList[0][2]==2 && dataList[1][1]==2 && dataList[2][0] ==2){
                 win=2;
             }
 

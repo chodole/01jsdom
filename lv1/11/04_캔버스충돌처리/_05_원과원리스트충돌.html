@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 이동키 : A S D W </h1>
+    <h1>작은 원을 큰원들과 충돌시켜보세요.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+    <script> 
+        function init(size){
+            for(let i=0;i<size;i++){
+                let originX = 100;
+                let originY = 300;
+                let gap = 100;
+                let radius =50;
+
+                let startX = originX + i * radius + i * gap;
+
+                let targetArc = {
+                    "x" : startX,
+                    "y" : originY,
+                    "radius" : radius,
+                    "color" : "green"
+                };
+
+                targetList.push(targetArc);
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            for(let v of targetList){
+                drawArc(v);
+            }
+
+            drawArc(myArc);
+            moveArc(myArc);
+            collisionList(myArc,targetList);
+
+            $testText = document.querySelector(".testText");
+            let temp = `${myArc.x} , ${myArc.y}<br><br>`;
+            for(v of targetList){
+                temp += `${v.x} , ${v.y}<br>`;
+            }
+            $testText.innerHTML = temp;
+        }
+
+        function drawArc(arc){
+            ctx.beginPath();
+            ctx.arc(arc.x, arc.y, arc.radius, 0, Math.PI*2);
+            ctx.fillStyle = arc.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function moveArc(arc){
+            if(getKeyStay("left")){
+                arc.x -= arc.speed;
+            }
+            if(getKeyStay("right")){
+                arc.x += arc.speed;
+            }
+            if(getKeyStay("up")){
+                arc.y -= arc.speed;
+            }
+            if(getKeyStay("down")){
+                arc.y += arc.speed;
+            }
+        }
+
+        function collisionList(arc,arcList){
+            let count = 0;
+            for(let v of arcList){
+                count+= getArcInArc(myArc,v);
+            }
+
+            if(count == targetList.length){
+                arc.color = "blue";
+            }else{
+                arc.color = "red";
+            }
+        }
+
+        function getArcInArc(arc1,arc2){
+            let x1=arc1.x;
+            let y1=arc1.y;
+            let radius1 = arc1.radius;
+
+            let x2=arc2.x;
+            let y2=arc2.y;
+            let radius2 = arc2.radius;
+
+            let hypotenusePow = Math.abs((x1-x2) * (x1-x2) + (y1-y2)*(y1-y2));
+            let hypotenuse = Math.sqrt(hypotenusePow);
+            let totalRadius = radius1 + radius2;
+
+            if(hypotenuse <= totalRadius){
+                return 0;
+            }
+            return 1;
+        }
+
+        function getKeyStay(key){
+            return keyStay[key];
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if(e.code == 'KeyD') {         
+                keyStay.right = true;
+            }
+            if(e.code == 'KeyA') {   
+                keyStay.left = true;
+            }
+            if(e.code == 'KeyW') {    
+                keyStay.up = true;
+            }
+            if(e.code == 'KeyS') {   
+                keyStay.down = true;
+            }
+
+        });
+
+        window.addEventListener("keyup", (e) => {
+            if(e.code == 'KeyD') {         
+                keyStay.right = false;
+            }
+            if(e.code == 'KeyA') {   
+                keyStay.left = false;
+            }
+            if(e.code == 'KeyW') {    
+                keyStay.up = false;
+            }
+            if(e.code == 'KeyS') {   
+                keyStay.down = false;
+            }
+
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let keyStay = {"right" : false , "left" : false, "up" : false, "down" : false};
+        let myArc = {
+            "x" : 100,
+            "y" : 100,
+            "radius" : 40,
+            "speed" : 2,
+            "color" : "blue"
+        };
+
+        let targetList = [];
+        init(5);
+        setInterval(draw,10);
+    </script>
+</body>
+</html>

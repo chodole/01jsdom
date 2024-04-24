@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <script>
+        /*
+            네모그리기
+            ctx.rect(시작x , 시작y , 가로크기 , 세로크기)
+            
+            색상 저장
+            ctx.fillStyle = "컬러"
+
+            색상채워넣기
+            ctx.fill();      
+        */
+        
+        function drawRect() {
+            ctx.beginPath();
+
+            ctx.rect(30, 30, 70, 50);
+            ctx.stroke();
+
+            ctx.closePath();
+
+            //----------------------------------
+
+            ctx.beginPath(); 
+
+            ctx.rect(200, 200, 100, 100);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+
+            ctx.closePath();
+        }
+
+        //-------------------------------------------------
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+        drawRect();
+
+    </script>
+</body>
+</html>

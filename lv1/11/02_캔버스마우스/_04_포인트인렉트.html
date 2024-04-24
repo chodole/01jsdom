@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>네모를 클릭하세요. </h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+
+    <script>
+        function draw(){
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+
+            drawRect();
+        }
+
+        function drawRect(){
+            ctx.beginPath();
+
+            ctx.rect(x,y,width,height);
+            ctx.fill();
+            if(check) {
+                ctx.fillStyle = "red";
+            }else{
+                ctx.fillStyle = "blue";
+            }
+            ctx.closePath();
+        }
+
+        window.addEventListener("click",(event)=>{
+            let mx=event.clientX - ctx.canvas.offsetLeft;
+            let my=event.clientY - ctx.canvas.offsetTop;
+
+            if(x<mx && mx<x + width && y<my && my<y+height){
+                check = true;
+            }else{
+                check = false;
+            }
+
+            let testText = document.querySelector(".testText");
+            testText.innerHTML = ``;
+            testText.innerHTML += `x  : ${x} <br>`;
+            testText.innerHTML += `y  : ${y} <br>`;
+            testText.innerHTML += `mx  : ${mx} <br>`;
+            testText.innerHTML += `my : ${my} <br>`;
+            testText.innerHTML += `ctx.canvas.offsetLeft  : ${ctx.canvas.offsetLeft} <br>`;
+            testText.innerHTML += `ctx.canvas.offsetTop : ${ctx.canvas.offsetTop} <br>`;
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let x = 220;
+        let y = 220;
+        let width = 100;
+        let height = 100
+
+        let check = false;
+
+        setInterval(draw,10);
+    </script>
+</body>
+</html>

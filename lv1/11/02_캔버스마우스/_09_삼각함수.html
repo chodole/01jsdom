@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+    <script>
+
+        function draw(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.beginPath();
+
+            let cosAngle = Math.cos(angle);
+            let sinAngle = Math.sin(angle);
+
+            let endX = x + len * cosAngle;
+            let endY = y + len * sinAngle;
+
+            ctx.moveTo(x,y);
+            ctx.lineTo(endX,endY);
+            ctx.stroke();
+
+            angle += 0.01;
+            angle %= 6.28;
+
+            ctx.closePath();
+
+            let testText = document.querySelector(".testText");
+            testText.innerHTML = ``;
+            testText.innerHTML += `x  : ${x} <br>`;
+            testText.innerHTML += `y  : ${y} <br>`;
+            testText.innerHTML += `angle  : ${angle} <br>`;
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let x = 300;
+        let y = 300;
+        let len = 200;
+        let angle = 3.14;
+
+        setInterval(draw,10);
+
+    </script>
+</body>
+</html>

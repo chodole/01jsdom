@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <div class="testText"></div>
+
+    <script>
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            drawRect();
+            x+=speed;
+
+            let testText = document.querySelector(".testText");
+            testText.innerHTML = ``;
+            testText.innerHTML += `x : ${x}<br>`;
+            testText.innerHTML += `y : ${y}<br>`;
+            testText.innerHTML += `width : ${width}<br>`;
+            testText.innerHTML += `height : ${height}<br>`;
+        }
+
+        function drawRect(){
+            ctx.beginPath();
+
+            ctx.rect(x,y,width,height);
+            ctx.fillStyle="blue";
+            ctx.fill();
+
+            ctx.closePath();
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let x= 0;
+        let y=0;
+        let width = 100;
+        let height = 100;
+        let speed = 2;
+
+        setInterval(draw,10);
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <h1>화면을 클릭해보세요.</h1>
+    <script>
+        function drawArc(){
+            ctx.beginPath();
+
+            ctx.arc(x,y,radius,0,angle);
+            ctx.fillStyle="blue";
+            ctx.fill();
+
+            ctx.closePath();
+        }
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext('2d');
+        console.log("캔버스 왼쪽 여백 = " + ctx.canvas.offsetLeft);
+        console.log("캔버스 상단 여백 = " + ctx.canvas.offsetTop);  
+
+        let x = 0;
+        let y = 0;
+        let radius = 40;
+        let angle = Math.PI * 2;
+
+        window.addEventListener("click",(event) =>{
+            x = event.clientX - ctx.canvas.offsetLeft;
+            y = event.clientY - ctx.canvas.offsetTop;
+
+            console.log(event.clientX , ctx.canvas.offsetLeft , x);
+            console.log(event.clientY , ctx.canvas.offsetTop , y);
+            drawArc();
+        });
+
+    </script>
+</body>
+</html>

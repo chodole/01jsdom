@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>총알발사 : space</h1>
+    <h1>문제점 : 총알이 한번에 여러발 발사된다.</h1>
+    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;">
+    </canvas>
+    <script>
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            drawRect();
+            bulletFire();
+            drawBullet();
+            moveBullet();
+        }
+
+        function drawRect() {
+            ctx.beginPath();
+            ctx.rect(rect.x,rect.y,rect.width,rect.height);
+            ctx.fillStyle = rect.color;
+            ctx.fill();
+            ctx.closePath();
+        };
+
+        function bulletFire(){
+            if(key.fire && bulletList.length < bulletMax){
+                let bullet = {
+                    "x" : rect.x + rect.width,
+                    "y" : rect.y + 15,
+                    "width" : 20,
+                    "height" : 20,
+                    "speed" : 5,
+                    "color" : "black",
+                    "lifeDistance" : 400,
+                };
+
+                bulletList.push(bullet);
+                console.log(bulletList.length);
+            }
+        }
+
+        function moveBullet() {
+            for(let i=0;i<bulletList.length;i++){
+                bulletList[i].x += bulletList[i].speed;
+                bulletList[i].lifeDistance -= bulletList[i].speed;
+                if(bulletList[i].lifeDistance <= 0){
+                    bulletList.splice(i,1);
+                }
+            }
+        }
+
+        function drawBullet(){
+            ctx.beginPath();
+
+            for(let i=0; i<bulletList.length;i++){
+                ctx.rect(bulletList[i].x, bulletList[i].y, bulletList[i].width, bulletList[i].height);
+                ctx.fillStyle = bulletList[i].color;
+                ctx.fill();
+            }
+            ctx.closePath();
+        }
+
+        window.addEventListener("keydown",(e) => {
+            if(e.code == "Space"){
+                key.fire = true;
+            }
+        });
+
+        window.addEventListener("keyup",(e) =>{
+            if(e.code == "Space"){
+                key.fire = false;
+            }
+        });
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d"); 
+
+        let key = { "fire" : false };
+        let rect = {
+            "x" : 100, 
+            "y" : 100, 
+            "width" : 50, 
+            "height" : 50, 
+            "speed" : 2,
+            "color" : "blue"
+        };
+
+        // 한 화면에 최대한 발사할 수 있는 
+        // 총알의 개수를 10개로 제한한다.
+        let bulletMax = 10; 
+        let bulletList = [];
+
+        setInterval(draw, 10);
+
+    </script>
+</body>
+</html>
