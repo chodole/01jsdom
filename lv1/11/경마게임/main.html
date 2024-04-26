@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #content{
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        table{
+            margin: 0 auto;
+        }
+        td{
+            border: 1px black solid;
+        }
+        img{
+            width: 70px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h2>경마게임</h2>
+        <table>
+            <tr>
+                <td colspan = "5">1등으로 도착하는 말은?</td>
+            </tr>
+            <tr>
+                <td style="background-color: red;">
+                    <label>
+                        <input type="radio" name="horseNum" value="1" id="one">1번 
+                    </label>
+                </td>
+                <td style="background-color: orange;">
+                    <label>
+                        <input type="radio" name="horseNum" value="2" id="two">2번 
+                    </label>
+                </td>
+                <td style="background-color: yellow;">
+                    <label>
+                        <input type="radio" name="horseNum" value="3" id="three">3번
+                    </label>
+                </td>
+                <td style="background-color: green;">
+                    <label>
+                        <input type="radio" name="horseNum" value="4" id="four">4번 
+                    </label>
+                </td>
+                <td style="background-color: blue;">
+                    <label>
+                        <input type="radio" name="horseNum" value="5" id="five">5번 
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="one">
+                        <img src="../images/red.png"> 
+                    </label>
+                </td>
+                <td>
+                    <label for="two">
+                        <img src="../images/orange.png"> 
+                    </label>
+                </td>
+                <td>
+                    <label for="three">
+                        <img src="../images/yellow.png"> 
+                    </label>
+                </td>
+                <td>
+                    <label for="four">
+                        <img src="../images/green.png"> 
+                    </label>
+                </td>
+                <td>
+                    <label for="five">
+                        <img src="../images/blue.png"> 
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <button id="play">선택완료</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <br><br><br>
+
+    <canvas id="myCanvas" width="1200" height="200"></canvas>
+
+    <script src="horse.js"></script>
+
+
+    
+</body>
+</html>

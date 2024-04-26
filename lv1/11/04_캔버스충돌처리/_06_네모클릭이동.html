@@ -48,8 +48,8 @@
         }
 
         window.addEventListener("mousedown",(e)=>{
-            let mx = event.clientX - ctx.canvas.offsetLeft;
-            let my = event.clientY - ctx.canvas.offsetTop;
+            let mx = e.clientX - ctx.canvas.offsetLeft;
+            let my = e.clientY - ctx.canvas.offsetTop;
             if(getPointInRect(mx,my,myRect)){
                 myRect.state = "click";
                 myRect.gapX = mx-myRect.x;
@@ -58,8 +58,8 @@
         });
 
         window.addEventListener("mousemove",(e)=>{
-            let mx = event.clientX - ctx.canvas.offsetLeft;
-            let my = event.clientY - ctx.canvas.offsetTop;
+            let mx = e.clientX - ctx.canvas.offsetLeft;
+            let my = e.clientY - ctx.canvas.offsetTop;
             if(myRect.state == "click"){
                 myRect.x = mx-myRect.gapX;
                 myRect.y = my-myRect.gapY;
