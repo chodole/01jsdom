@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>_index.html</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #333333; 
+        }
+        a:hover {
+            color: #5F0080;
+        }
+        table, tr, td {
+            border: 1px solid #333333;
+            border-collapse: collapse;
+        }
+
+        /* header1 */
+        #headerTable1 {
+            width: 1050px;
+            height: 37px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 13px;
+        }
+        .header1-space {
+            width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .header1-menu {
+            width: 60px;
+        }
+        /* header2 */
+        #headerTable2 {
+            width: 1050px;
+            height: 63px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .header2-img { 
+            text-align: left;
+         }
+        .header2-logo a {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5F0080;
+        }
+        .header2-search {
+            width: 700px;
+        }
+        .header2-input {
+             width: 300px;
+             height: 18.39px;
+             font-size: 16px;
+             border: none;
+        }
+        .header2-img {
+            width: 50px;
+            text-align: center;
+        }
+        #searchTable {
+            width: 400px;
+            height: 48px;
+            /* table안의 table 중앙정렬 */
+            margin-left: auto;
+            margin-right: auto;
+            /* table 모서리 둥글게 */
+            border-collapse: separate;
+            border-radius: 5px;
+            border: 1px solid #5F0080;
+        }
+        /* header3 */
+        #headerTable3 {
+            width: 1050px;
+            height: 56px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .header3-menu {
+            width: 170px;
+        }
+        /* bannder */
+        #banner {
+            margin: 0 auto;
+            text-align: center;
+        }
+        #slide-img {
+            width: 1890px;
+        }
+        /* content */
+        #content {
+            width: 1050px;
+            height: 48px;
+            margin: 0 auto;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 28px;
+            color: #333333;
+            font-weight: bold;
+        }
+        .content-img {
+            width: 250px;
+        }
+        .content-space1 {
+            height: 20px;
+        }
+        .content-space2 {
+            width: 10px;
+        }
+        .content-text {
+            text-align: left;
+        }
+        .content-text1 {
+            font-size: 16px;
+            color: #333333;
+            text-align: left;
+            vertical-align: top;
+        }
+        .content-text2 {
+            font-size: 16px;
+            color: #FA622F;
+        }
+        .content-text3 {
+            font-size: 16px;
+            color: #333333;
+        }
+        .content-text4 {
+            font-size: 14px;
+            color: #B5B5B5;
+            text-decoration: line-through;
+            text-align: left;
+        }
+        /* content-banner */
+        #content-banner {
+            margin: 0 auto;
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+        #content-banner img {
+            width: 1050px;
+        }
+
+        /* line */
+        .line {
+            background-color: #CCCCCC;
+            border: 0;
+            height: 1px;
+            margin: 50px 0px;
+        }
+        /* footer */
+        #footer {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <table id="headerTable1">
+        <tr>
+            <td class="header1-space"></td>
+            <td class="header1-menu"><a>회원가입</a></td>
+            <td class="header1-bar"><img src="./img/bar.jpg"></td>
+            <td class="header1-menu"><a>로그인</a></td>
+            <td class="header1-bar"><img src="./img/bar.jpg"></td>
+            <td class="header1-menu"><a>고객센터</a></td>
+        </tr>
+    </table>
+    <table id="headerTable2">
+        <tr>
+            <td class="header2-img"><img src="./img/logo.svg" class="logo"></td>
+            <td class="header2-logo"><a>마켓컬리</a></td>
+            <td class="header2-search">
+                <table id="searchTable">
+                    <tr>
+                        <td><input type="text" class="header2-input" placeholder="검색어를 입력해주세요"></td>
+                        <td><img src="./img/search.svg"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="header2-img"><img src="./img/location.svg"></td>
+            <td class="header2-img"><img src="./img/heart.svg"></td>
+            <td class="header2-img"><img src="./img/cart.svg"></td>
+        </tr>
+    </table>
+    <table id="headerTable3">
+        <tr>
+            <td class="header3-menu"><a>전체상품</a></td>
+            <td class="header3-menu"><a>신상품</a></td>
+            <td class="header3-menu"><a>베스트</a></td>
+            <td class="header3-menu"><a>알뜰쇼핑</a></td>
+            <td class="header3-menu"><a>특가/혜택</a></td>
+            <td align="right" style="width: 100px;"><a>새벽알뜰배송</a></td>
+        </tr>
+    </table>
+
+    <table id="banner">
+        <tr>
+            <td><img id="slide-img" src="./img/banner1.jpg"></td>
+        </tr>
+    </table>
+
+    <table id="content">
+        <tr>
+            <td colspan="7">
+                놓치면 후회할 가격<img style="height: 20px;" src="./img/cramps.svg">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7" class="content-space1"></td>
+        </tr>
+        <tr>
+            <td><img class="content-img" src="./img/1.jpg"></td>
+            <td class="content-space2"></td>
+            <td><img class="content-img" src="./img/2.jpg"></td>
+            <td class="content-space2"></td>
+            <td><img class="content-img" src="./img/3.jpg"></td>
+            <td class="content-space2"></td>
+            <td><img class="content-img" src="./img/4.jpg"></td>
+            <td class="content-space2"></td>
+        </tr>
+        <tr>
+            <td class="content-text1">무화과 450g</td>
+            <td class="content-space2"></td>
+            <td class="content-text1">[KF365] 국내산 손질오징어 2미<br>300g 내외 (냉장)</td>
+            <td class="content-space2"></td>
+            <td class="content-text1">영암 고당도 무화과 700g</td>
+            <td class="content-space2"></td>
+            <td class="content-text1">당도선별 복숭아 1.8kg 3종</td>
+        </tr>
+        <tr>
+            <td class="content-text">
+                <span class="content-text2">35%</span>
+                <span class="content-text3">12,900원</span>
+            </td>
+            <td class="content-space2"></td>
+            <td class="content-text">
+                <span class="content-text2">25%</span>
+                <span class="content-text3">7,425원</span>
+            </td>
+            <td class="content-space2"></td>
+            <td class="content-text">
+                <span class="content-text2">20%</span>
+                <span class="content-text3">15,900원</span>
+            </td>
+            <td class="content-space2"></td>
+            <td class="content-text">
+                <span class="content-text2">19%</span>
+                <span class="content-text3">16,900원~</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="content-text4">19,900원</td>
+            <td class="content-space2"></td>
+            <td class="content-text4">9,900원</td>
+            <td class="content-space2"></td>
+            <td class="content-text4">19,900원</td>
+            <td class="content-space2"></td>
+            <td class="content-text4">20,900원</td>
+        </tr>
+    </table>
+
+     <!-- content-banner -->
+     <table id="content-banner">
+        <tr>
+            <td><img src="./img/content-banner.jpg"></td>
+        </tr>
+    </table>
+
+    <!-- content2 -->
+    <table id="content">
+        <tr>
+            <td colspan="7">
+                놓치면 후회할 가격<img style="height: 20px;" src="./img/cramps.svg">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7" class="content-space1"></td>
+        </tr>
+        <tr>
+            <td><img class="content-img" src="./img/1.jpg"></td>
+            <td class="content-space2"></td>
+            <td><img class="content-img" src="./img/2.jpg"></td>
+            <td class="content-space2"></td>
+            <td><img class="content-img" src="./img/3.jpg"></td>
+            <td class="content-space2"></td>
+            <td><img class="content-img" src="./img/4.jpg"></td>
+        </tr>
+        <tr>
+            <td class="content-text1">무화과 450g</td>
+            <td class="content-space2"></td>
+            <td class="content-text1">[KF365] 국내산 손질오징어 2미<br>300g 내외 (냉장)</td>
+            <td class="content-space2"></td>
+            <td class="content-text1">영암 고당도 무화과 700g</td>
+            <td class="content-space2"></td>
+            <td class="content-text1">당도선별 복숭아 1.8kg 3종</td>
+        </tr>
+        <tr>
+            <td class="content-text">
+                <span class="content-text2">35%</span>
+                <span class="content-text3">12,900원</span>
+            </td>
+            <td class="content-space2"></td>
+            <td class="content-text">
+                <span class="content-text2">25%</span>
+                <span class="content-text3">7,425원</span>
+            </td>
+            <td class="content-space2"></td>
+            <td class="content-text">
+                <span class="content-text2">20%</span>
+                <span class="content-text3">15,900원</span>
+            </td>
+            <td class="content-space2"></td>
+            <td class="content-text">
+                <span class="content-text2">19%</span>
+                <span class="content-text3">16,900원~</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="content-text4">19,900원</td>
+            <td class="content-space2"></td>
+            <td class="content-text4">9,900원</td>
+            <td class="content-space2"></td>
+            <td class="content-text4">19,900원</td>
+            <td class="content-space2"></td>
+            <td class="content-text4">20,900원</td>
+        </tr>
+    </table>
+
+
+    <hr class="line">
+
+    <!-- footer -->
+    <table id="footer">
+        <tr>
+            <td><img src="./img/footer.png"></td>
+        </tr>
+    </table>
+
+    
+</body>
+</html>
