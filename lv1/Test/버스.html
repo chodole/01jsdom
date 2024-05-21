@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #header{
+            margin: 0 auto;
+            display: table;
+        }
+        #target{
+            margin: 0 auto;
+            display: table;
+        }
+        td{
+            border: 1px solid black;
+            width: 60px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <div id="header">
+        <table>
+            <tr>
+                <td><span id="year"></span>년</td>
+                <td><span id="month"></span>월</td>
+                <td><button onclick="minusClick()">△</button></td>
+                <td><button onclick="plusClick()">▽</button></td>
+                <td>
+                    <select id="bNum"></select>
+                </td>
+                <td>
+                    <select id="cNum">
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="day"></select>
+                </td>
+                <td>
+                    <select id="ab">
+                        <option value="A">오전</option>
+                        <option value="B">오후</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="target"></div>
+
+    <script>
+
+        let today = new Date();
+        let thisYear = null;
+        let thisMonth = null;
+        let $target = document.querySelector("#target");
+
+        let $bNum = document.querySelector("#bNum");
+        let $cNum = document.querySelector("#cNum");
+        let $day = document.querySelector("#day");
+        let $ab = document.querySelector("#ab");
+        let AmPm = "A";
+        let bNum = 1;
+
+        let $table = null;
+        let dayList = ["일","월","화","수","목","금","토"];
+
+        function init(){
+            thisYear = today.getFullYear();
+            thisMonth = today.getMonth();
+            let date = today.getDate();
+            let day = today.getDay();
+            document.querySelector("#year").innerText = thisYear;
+            document.querySelector("#month").innerText = thisMonth +1;
+
+            
+            for(let i=1; i<28; i++){
+                let $option = document.createElement("option");
+                $option.text = i+"";
+                $option.value = i+"";
+                $bNum.append($option);
+            }
+            
+            for(let i =0; i<dayList.length; i++){
+                let $option = document.createElement("option");
+                $option.text = dayList[i];
+                $option.value = dayList[i];
+                $day.append($option);
+            }
+
+            setDate(thisYear, thisMonth);
+        }
+        
+        function setDate(thisYear,thisMonth){
+            AmPm = $ab.value;
+            bNum = parseInt($bNum.value);
+
+            if($table != null){
+                $target.removeChild($table);
+            }
+
+            $table = document.createElement("table");
+            for(let i=0;i<7;i++){
+                let $tr = document.createElement("tr");
+                for(let j=0;j<7;j++){
+                    let $td = document.createElement("td");
+                    $tr.append($td);
+                }
+                $table.append($tr);
+            }
+            $target.append($table);
+
+            let total = 0;
+            let lastYear = thisYear -1;
+
+            total += lastYear * 365;
+
+            total += parseInt(lastYear / 400);
+            total -= parseInt(lastYear / 100);
+            total += parseInt(lastYear/4);
+
+            let monthList = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+            if(thisYear % 400 == 0){
+                monthList = [31,29,31,30,31,30,31,31,30,31,30,31];
+            }else if(thisYear%100 != 0 && thisYear % 4 == 0){
+                monthList = [31,29,31,30,31,30,31,31,30,31,30,31];
+            }
+
+            for(let i=0;i<thisMonth;i++){
+                total+=monthList[i];
+            }
+
+            total+=1;
+
+            let cIndex = 0;
+            for(let i=0;i<dayList.length;i++){
+                $table.children[0].children[i].innerText = dayList[i];
+                if(dayList[i] == $day.value){
+                    $table.children[0].children[i].style.backgroundColor = "yellow";
+                    cIndex = i;
+                }
+            }
+
+            let dayIndex = total%7;
+            console.log("시작날짜 =",dayIndex);
+
+            let row = 1;
+            console.log(cIndex);
+            for(let i=0;i<monthList[thisMonth];i++){
+                let index = (i+dayIndex) % 7;
+                let index2 = new Array();
+                for(let k=0; k<6;k++){
+                    index2.push((cIndex-1)+7*k);
+                }
+                console.log(index2);
+
+                $table.children[row].children[index].innerText = bNum;
+                $table.children[row].children[index].style.fontWeight = "bold";
+                if(bNum >=1 && bNum <= 5){
+                    $table.children[row].children[index].style.color = "red";
+                }else if(bNum == 6 || bNum == 7){
+                    $table.children[row].children[index].style.color = "blue";
+                }
+                
+                bNum -= parseInt($cNum.value);
+                if(bNum <= 0){
+                    bNum += 27;
+                }
+
+                if(AmPm == "A"){
+                    $table.children[row].children[index].style.backgroundColor = "#A4D8FF";
+                }else if(AmPm == "B"){
+                    $table.children[row].children[index].style.backgroundColor = "#FFB9A4";
+                }
+                if(index == 6){
+                    row += 1;
+                }
+                for(let k=0; k<index2.length; k++){
+                    if(index2[k] == index){
+                        if(AmPm == "A"){
+                            AmPm = "B";
+                        }else if(AmPm == "B"){
+                            AmPm = "A";
+                        }
+                    }
+                }
+            }
+        }
+
+        function minusClick(){
+            let $thisYear = document.querySelector("#year");
+            let $thisMonth = document.querySelector("#month");
+
+            thisYear =Number($thisYear.innerText);
+            thisMonth = Number($thisMonth.innerText)-1;
+
+            if(thisMonth == 0){
+                thisYear -=1;
+                thisMonth = 12;
+
+                $thisYear.innerText = thisYear;
+                $thisMonth.innerText = thisMonth;
+            }else{
+                $thisMonth.innerText = thisMonth;
+            }
+
+            setDate(thisYear, thisMonth-1);
+        }
+
+        function plusClick(){
+            let $thisYear = document.querySelector("#year");
+            let $thisMonth = document.querySelector("#month");
+
+            thisYear = Number($thisYear.innerText);
+            thisMonth = Number($thisMonth.innerText)+1;
+
+            if(thisMonth ==13){
+                thisYear+=1;
+                thisMonth = 1;
+
+                $thisYear.innerText = thisYear;
+                $thisMonth.innerText = thisMonth;
+            }else{
+                $thisMonth.innerText = thisMonth;
+            }
+
+            setDate(thisYear,thisMonth-1);
+        }
+
+        $bNum.addEventListener("input",function(e){
+            setDate(thisYear,thisMonth-1);
+        });
+        $cNum.addEventListener("input",function(e){
+            setDate(thisYear,thisMonth-1);
+        });
+        $day.addEventListener("input",function(e){
+            setDate(thisYear,thisMonth-1);
+        });
+        $ab.addEventListener("input",function(e){
+            setDate(thisYear,thisMonth-1);
+        });
+    </script>
+</body>
+</html>
