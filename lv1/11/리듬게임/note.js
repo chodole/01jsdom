@@ -9,12 +9,15 @@ function draw(){
             index++;
         }     
     }
+    
+    drawCombo();
+    drawCombo2();
+    lineDraw(); 
+    
     moveNote();
     drawNote();
     pushNote();
     comboCheck();
-
-    lineDraw(); 
 }
 
 function moveNote(){
@@ -67,7 +70,7 @@ function lineDraw(){
         ctx.rect(i*100,0,2,canvas.height);
         ctx.fillStyle = "black";
         ctx.font = "15px serif";
-        ctx.fillText(text,(i-1)*100+45,canvas.height-15);
+        ctx.fillText(text,(i-1)*100+45,canvas.height-20);
         ctx.fill();
         ctx.closePath();
     }
@@ -134,8 +137,7 @@ function comboCheck(key){
 }
 
 function comboRank(i){
-    console.log("y = "+noteList[i].y);
-    if(noteList[i].y<canvas.height-50 && noteList[i].y>=canvas.height-70){
+    if(noteList[i].y<canvas.height-35 && noteList[i].y>=canvas.height-50){
         $cmRank.innerHTML = "GOOD";
         score += 10;
         combo++;
@@ -143,7 +145,7 @@ function comboRank(i){
         noteList[i].check = false;
         $score.innerHTML = score;
         $combo.innerHTML = combo;
-    }else if(noteList[i].y>=canvas.height-50 && noteList[i].y<canvas.height-10){
+    }else if(noteList[i].y>=canvas.height-35 && noteList[i].y<canvas.height-5){
         $cmRank.innerHTML = "GREAT";
         score += 20;
         combo++;
@@ -151,7 +153,29 @@ function comboRank(i){
         noteList[i].check = false;
         $score.innerHTML = score;
         $combo.innerHTML = combo;
+    }else if(noteList[i].y >= canvas.height-5 || (noteList[i].y<canvas.height-50 && noteList[i].y>=canvas.height-60 )){
+        $cmRank.innerHTML = "MISS";
+        combo = 0;
+        noteList[i].combo = false;
+        noteList[i].check = false;
+        $score.innerHTML = score;
+        $combo.innerHTML = combo;
     }
+}
+
+function drawCombo() {
+    ctx.beginPath();
+    ctx.rect(0,canvas.height-60,canvas.width,10);
+    ctx.fillStyle = "skyblue";
+    ctx.fill();
+    ctx.closePath();
+}
+function drawCombo2(){
+    ctx.beginPath();
+    ctx.rect(0,canvas.height-50,canvas.width,15);
+    ctx.fillStyle = "pink";
+    ctx.fill();
+    ctx.closePath();
 }
 
 window.addEventListener("keydown",(e)=>{
@@ -193,7 +217,7 @@ window.addEventListener("keyup",(e)=>{
 });
 
 function setNote(){
-    for(let i=0;i<2;i++){
+    for(let i=0;i<5;i++){
         let r = Math.floor(Math.random()*4);
         let note = {
             "x" : r*100,
@@ -202,11 +226,14 @@ function setNote(){
             "height" : 30,
             "speed" : 5,
             "color" : "blue",
-            "delay" : 50,
+            "delay" : 0,
             "check" : true,
             "combo" : false
         };
         note.delay = note.height+20;
+        if(i!= 0){
+            note.delay = noteList[i-1].height+20;
+        }
 
         noteList.push(note);
     }
@@ -216,9 +243,9 @@ function setKey(){
     for(let i=0;i<4;i++){
         let temp = {
             "x" : i*100,
-            "y" : canvas.height-40,
+            "y" : canvas.height-35,
             "width" : 100,
-            "height" : 60,
+            "height" : 30,
             "color" : "coral"
         }
         keyList.push(temp);
@@ -237,8 +264,29 @@ let combo = 0;
 let $combo = document.querySelector("#combo");
 let $score = document.querySelector("#score");
 let $cmRank = document.querySelector("#comboRank");
+let $button = document.querySelector("#button");
 
-setNote(); 
-setKey();
+let timeInterval = null;
 
-setInterval(draw,10);
+function note(){
+    noteList = [];
+    keyList = [];
+    keyStay = {"A" : "up", "S" : "up", "D" : "up", "F" : "up"};
+    index = 0;
+    score = 0;
+    combo = 0;
+
+    $combo.innerHTML = combo;
+    $score.innerHTML = score;
+    $cmRank.innerHTML = "";
+}
+
+$button.addEventListener("click",()=>{
+    clearInterval(timeInterval);
+    note();
+    setNote(); 
+    setKey();
+
+    timeInterval = setInterval(draw,10);
+});
+
